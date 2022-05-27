@@ -42,15 +42,16 @@ public class Choose extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 700));
 
         jPanel1.setBackground(new java.awt.Color(44, 47, 51));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 700));
 
         jPanel2.setBackground(new java.awt.Color(153, 170, 181));
+        jPanel2.setPreferredSize(new java.awt.Dimension(334, 383));
 
         chBAnda.setBackground(new java.awt.Color(0, 0, 0));
         chBAnda.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        chBAnda.setForeground(new java.awt.Color(255, 255, 255));
         chBAnda.setText("BANDA");
         chBAnda.setToolTipText("");
         chBAnda.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +74,7 @@ public class Choose extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jLabel1)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,6 +90,7 @@ public class Choose extends javax.swing.JFrame {
 
         chLOcal.setBackground(new java.awt.Color(0, 0, 0));
         chLOcal.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        chLOcal.setForeground(new java.awt.Color(255, 255, 255));
         chLOcal.setText("LOCAL");
         chLOcal.setToolTipText("");
         chLOcal.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +157,7 @@ public class Choose extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(101, 101, 101))
         );

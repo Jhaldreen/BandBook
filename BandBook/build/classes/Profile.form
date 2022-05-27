@@ -393,7 +393,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/pictures/iconos45x45/usuario.png"/>
+              <Image iconType="3" name="/pictures/iconos45x45/boton-editar.png"/>
             </Property>
           </Properties>
           <Events>

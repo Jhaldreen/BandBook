@@ -103,7 +103,6 @@ public class Register extends javax.swing.JFrame {
         regPass.setForeground(new java.awt.Color(0, 0, 0));
         regPass.setText("Contraseña");
 
-        jTextField3.setEditable(false);
         jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         jTextField3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(0, 0, 0));
@@ -117,7 +116,6 @@ public class Register extends javax.swing.JFrame {
         regName.setForeground(new java.awt.Color(0, 0, 0));
         regName.setText("Nombre");
 
-        jTextField4.setEditable(false);
         jTextField4.setBackground(new java.awt.Color(255, 255, 255));
         jTextField4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(0, 0, 0));
@@ -127,7 +125,6 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        jTextField5.setEditable(false);
         jTextField5.setBackground(new java.awt.Color(255, 255, 255));
         jTextField5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(0, 0, 0));
@@ -145,7 +142,6 @@ public class Register extends javax.swing.JFrame {
         regState.setForeground(new java.awt.Color(0, 0, 0));
         regState.setText("Localidad");
 
-        jTextField6.setEditable(false);
         jTextField6.setBackground(new java.awt.Color(255, 255, 255));
         jTextField6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField6.setForeground(new java.awt.Color(0, 0, 0));
@@ -155,7 +151,6 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        jTextField7.setEditable(false);
         jTextField7.setBackground(new java.awt.Color(255, 255, 255));
         jTextField7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField7.setForeground(new java.awt.Color(0, 0, 0));
@@ -173,7 +168,6 @@ public class Register extends javax.swing.JFrame {
         regNum.setForeground(new java.awt.Color(0, 0, 0));
         regNum.setText("numero");
 
-        jTextField8.setEditable(false);
         jTextField8.setBackground(new java.awt.Color(255, 255, 255));
         jTextField8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField8.setForeground(new java.awt.Color(0, 0, 0));

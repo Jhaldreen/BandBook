@@ -211,7 +211,7 @@ public class Profile extends javax.swing.JFrame {
 
         btnModPerfil.setBackground(new java.awt.Color(153, 170, 181));
         btnModPerfil.setForeground(new java.awt.Color(0, 0, 0));
-        btnModPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/usuario.png"))); // NOI18N
+        btnModPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/boton-editar.png"))); // NOI18N
         btnModPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModPerfilActionPerformed(evt);
@@ -327,7 +327,7 @@ public class Profile extends javax.swing.JFrame {
 
     private void btnModPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPerfilActionPerformed
          new EditProfile().setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_btnModPerfilActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
