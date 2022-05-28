@@ -18,6 +18,7 @@ public class BD_Main {
        BaseDatos bd = new BaseDatos();
        
        bd.mensajes();
+       
     }
     
 }

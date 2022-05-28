@@ -21,11 +21,8 @@ public class BaseDatos {
 
     public void mensajes() {
 
-        try {
-             //esta conexion no hace falta hacerla todo el rato con que la haga 
-             //una vez al principio vale pero me he dado cuenta tarde 
-            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
-            //DatabaseMetaData datos = con.getMetaData(); obtener informacion de la BD
+        try {           
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion           
             //System.out.println(datos.getUserName());//sacar el servidor
             Statement sentence = con.createStatement();
             resul = sentence.executeQuery("Select * from mensajes");
@@ -45,41 +42,14 @@ public class BaseDatos {
             
     } 
 
-    public void mostrarInformacionUsuariosMuro() {
+    public void selectProvince() {
 
         try {
 
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             Statement sentence = con.createStatement();
-            // si pongo , vuelos me da la info de todos los vuelos también
-            resul = sentence.executeQuery("Select name,state,province from usuarios");
-
-            // resul = datos.getTables(null,"Iberia", null, null);
-            while (resul.next()) {//recorre las tablas y me dice las que hay
-                System.out.println("Numero: "
-                        + resul.getString(1) + " Vuelo: " + resul.getString(2)
-                        + " Plaza: " + resul.getString(3) + " Fumador: " + resul.getString(4));
-
-            }
-
-            con.close();// cerrar la operacion
-
-        } catch (SQLException ex) {
-            System.out.println("error" + ex);
-        }
-
-    }
-
-    public void verPasajerosVuelo() {
-
-        try {
-
-            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
-            Statement sentence = con.createStatement();
-            Scanner usuario = new Scanner(System.in);
-            System.out.println("¿De qué vuelo quieres ver los pasajeros? ");
-            String vuelo = usuario.nextLine();
-            String sql = "Select * from pasajeros WHERE COD_VUELO = '" + vuelo + "'";
+            String provincia = "";
+            String sql = "Select * from usuario WHERE province = '" + provincia + "'";
             //System.out.println(sql);
             resul = sentence.executeQuery(sql);
 
@@ -98,41 +68,33 @@ public class BaseDatos {
 
     }
 
-    public void registro(String email, String pass, String name,
-            int phone, String state, String province, int num) {// variables para pasar despues
-        // esta parte se pueden meter los datos del tiron sin tener que hacer tantos scanner 
-        //en la clase principal solo hay que que poner las variables en INSERT
-        // INSERT INTO vuelos VALUES ("'"+codVuelos+"'" etc etc )
+    public boolean registro(Usuarios usr) {// variables para pasar despues
         try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
-            // creamos una variuable para meter el INSERT y se la pasamos al prepared statemen 
-            String sql = " INSERT INTO usuarios VALUES (?,?,?,?,?,?,?)";
+            // creamos una variuable para meter el INSERT y se la pasamos al prepared statement 
+            String sql = " INSERT INTO usuarios "
+                    + "(email,pass,name,phone,state,province,num_people)"
+                    + " VALUES (?,?,?,?,?,?,?)";
             PreparedStatement sentencia = con.prepareStatement(sql);
             //asignamos cada variable siendo la primera cifra el numero de columna
-            //y despues la variable
-            sentencia.setString(1, email);
-            sentencia.setString(2, pass);
-            sentencia.setString(3, name);
-            sentencia.setInt(4, phone);
-            sentencia.setString(5, state);
-            sentencia.setString(6, province);
-            sentencia.setInt(7, num);
-            int filasDeVueltas = sentencia.executeUpdate();//ejecutamos las sentencias
-
-            if (filasDeVueltas != 1) {// condicion para saber si se introduce o no el vuelo
-
-                System.out.println("Usuario mal registrado");
-
-            } else {
-
-                System.out.println("Usuario registrado correctamente");
-            }
+            //y despues la variable           
+            sentencia.setString(1, usr.getEmail());
+            sentencia.setString(2,usr.getPass());
+            sentencia.setString(3, usr.getName());
+            sentencia.setString(4, usr.getPhone());
+            sentencia.setString(5, usr.getState());
+            sentencia.setString(6, usr.getProvince());
+            sentencia.setInt(7, usr.getNum());
+            sentencia.executeUpdate();//ejecutamos las sentencias
+            
             sentencia.close();//cerrrar la sentencia
             con.close();//cerrar conexion
 
         } catch (SQLException ex) {
-            System.out.println("Error" + ex);
+            System.out.println("Error al insertar Registro " + ex);
         }
+        return true;
+        
 
     }
 
