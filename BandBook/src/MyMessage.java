@@ -74,7 +74,6 @@ public class MyMessage extends javax.swing.JFrame {
         btnCrearMess.setBackground(new java.awt.Color(153, 170, 181));
         btnCrearMess.setForeground(new java.awt.Color(0, 0, 0));
         btnCrearMess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/mensajesCrear.png"))); // NOI18N
-        btnCrearMess.setPreferredSize(new java.awt.Dimension(134, 134));
         btnCrearMess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearMessActionPerformed(evt);
@@ -117,7 +116,7 @@ public class MyMessage extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCrearMess, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCrearMess)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -136,7 +135,7 @@ public class MyMessage extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCrearMess, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCrearMess)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -184,6 +183,10 @@ public class MyMessage extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setHeaderValue("Nombre");
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("Mensaje");
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -250,7 +253,7 @@ public class MyMessage extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if(true){
-        
+        new ReadMessages().setVisible(true);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -296,7 +299,6 @@ public class MyMessage extends javax.swing.JFrame {
     private javax.swing.JButton btnCrearMess;
     private javax.swing.JButton btnMuro;
     private javax.swing.JButton btnProfile;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel6;
@@ -304,10 +306,7 @@ public class MyMessage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

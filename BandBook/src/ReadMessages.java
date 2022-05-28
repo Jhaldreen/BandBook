@@ -45,6 +45,7 @@ public class ReadMessages extends javax.swing.JFrame {
         jLabel1.setText("Rock Beer the new");
 
         jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(60, 63, 65));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
