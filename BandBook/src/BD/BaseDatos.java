@@ -17,7 +17,7 @@ public class BaseDatos {
 
     Connection con;
     String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
-    ResultSet resul;// crear cursor para manjer salidas de las consultas
+    ResultSet resul;// crear cursor para manejar salidas de las consultas
 
     public void mensajes() {
 
@@ -68,7 +68,7 @@ public class BaseDatos {
 
     }
 
-    public boolean registro(Usuarios usr) {// variables para pasar despues
+    public boolean registro(Usuarios usr) {
         try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             // creamos una variuable para meter el INSERT y se la pasamos al prepared statement 
@@ -93,7 +93,7 @@ public class BaseDatos {
         } catch (SQLException ex) {
             System.out.println("Error al insertar Registro " + ex);
         }
-        return true;
+        return false;
         
 
     }

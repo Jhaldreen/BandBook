@@ -362,7 +362,7 @@ public class Register extends javax.swing.JFrame {
             
             String newPass = Hash.sha1(pass);//encriptar la contraseña en la BD
 
-            int num = Integer.parseInt(txtNumReg.getText().toString());
+            int num = Integer.parseInt(txtNumReg.getText());
            
             usu.setEmail(txtEmailReg.getText());
             usu.setPass(newPass);
@@ -371,12 +371,10 @@ public class Register extends javax.swing.JFrame {
             usu.setState(txtStateReg.getText());
             usu.setProvince(txtProvinceReg.getText());
             usu.setNum(num);
-            
-            while(bd.registro(usu)){
-                
+           
+            if(bd.registro(usu)){  
             JOptionPane.showMessageDialog(null, "Registro completado");
-          
-            }
+            }else{JOptionPane.showMessageDialog(null, "No se ha completado el registro");}
   
         }else{JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");}
     }//GEN-LAST:event_btnRegisterActionPerformed
