@@ -18,13 +18,14 @@ import javax.swing.JTextField;
  * @author Antonio
  */
 public class Register extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Register
-     */
+ 
+    Choose c = new Choose();
+    
+   
+ 
     public Register() {
         initComponents();
-          Choose ch = new Choose();
+         
           
           
    
@@ -163,7 +164,6 @@ public class Register extends javax.swing.JFrame {
 
         regNum.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         regNum.setForeground(new java.awt.Color(0, 0, 0));
-        regNum.setText("numero");
 
         txtNumReg.setBackground(new java.awt.Color(255, 255, 255));
         txtNumReg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -334,7 +334,7 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameRegActionPerformed
 
     private void txtPhoneRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneRegActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtPhoneRegActionPerformed
 
     private void txtStateRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStateRegActionPerformed
@@ -371,12 +371,18 @@ public class Register extends javax.swing.JFrame {
             usu.setState(txtStateReg.getText());
             usu.setProvince(txtProvinceReg.getText());
             usu.setNum(num);
-           
-            if(bd.registro(usu)){  
-            JOptionPane.showMessageDialog(null, "Registro completado");
-            }else{JOptionPane.showMessageDialog(null, "No se ha completado el registro");}
-  
-        }else{JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");}
+            
+            if(true){
+            JOptionPane.showMessageDialog(null, "usuario registrado");
+            bd.registro(usu);
+            new Profile().setVisible(true);
+            this.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(null, "Registro incompleto");}
+                
+          
+        }else{JOptionPane.showMessageDialog(null, "Las contraseññas no coinciden");}
+          
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

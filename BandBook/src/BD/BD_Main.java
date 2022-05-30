@@ -5,6 +5,10 @@
  */
 package BD;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
 /**
  *
  * @author Antonio
@@ -16,9 +20,15 @@ public class BD_Main {
      */
     public static void main(String[] args) {
        BaseDatos bd = new BaseDatos();
+       Usuarios usu = new Usuarios();
        
-       bd.mensajes();
+       
+       
+       
+    
+     }
+         
        
     }
     
-}
+

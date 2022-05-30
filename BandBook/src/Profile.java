@@ -1,3 +1,6 @@
+
+import BD.BaseDatos;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,6 +13,7 @@
  */
 public class Profile extends javax.swing.JFrame {
 
+    BaseDatos bd = new BaseDatos();
     /**
      * Creates new form Profile
      */
@@ -30,12 +34,12 @@ public class Profile extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtnameProfile = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtnumeroProfile = new javax.swing.JTextField();
+        txtstateProfile = new javax.swing.JTextField();
+        txtProvinceProfile = new javax.swing.JTextField();
+        txtphoneProfile = new javax.swing.JTextField();
         btnSms = new javax.swing.JButton();
         btnModPerfil = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -74,18 +78,18 @@ public class Profile extends javax.swing.JFrame {
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(44, 47, 51));
-        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("Nombre de la banda o local");
-        jTextField1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        jTextField1.setSelectedTextColor(new java.awt.Color(44, 47, 51));
-        jTextField1.setSelectionColor(new java.awt.Color(44, 47, 51));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtnameProfile.setEditable(false);
+        txtnameProfile.setBackground(new java.awt.Color(44, 47, 51));
+        txtnameProfile.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        txtnameProfile.setForeground(new java.awt.Color(255, 255, 255));
+        txtnameProfile.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtnameProfile.setText("Nombre de la banda o local");
+        txtnameProfile.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        txtnameProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
+        txtnameProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
+        txtnameProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtnameProfileActionPerformed(evt);
             }
         });
 
@@ -102,55 +106,55 @@ public class Profile extends javax.swing.JFrame {
             }
         });
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(44, 47, 51));
-        jTextField3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setText("Número de integrantes 4");
-        jTextField3.setSelectedTextColor(new java.awt.Color(44, 47, 51));
-        jTextField3.setSelectionColor(new java.awt.Color(44, 47, 51));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtnumeroProfile.setEditable(false);
+        txtnumeroProfile.setBackground(new java.awt.Color(44, 47, 51));
+        txtnumeroProfile.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtnumeroProfile.setForeground(new java.awt.Color(255, 255, 255));
+        txtnumeroProfile.setText("Número de integrantes 4");
+        txtnumeroProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
+        txtnumeroProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
+        txtnumeroProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtnumeroProfileActionPerformed(evt);
             }
         });
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(44, 47, 51));
-        jTextField4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField4.setText("Santander");
-        jTextField4.setSelectedTextColor(new java.awt.Color(44, 47, 51));
-        jTextField4.setSelectionColor(new java.awt.Color(44, 47, 51));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtstateProfile.setEditable(false);
+        txtstateProfile.setBackground(new java.awt.Color(44, 47, 51));
+        txtstateProfile.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtstateProfile.setForeground(new java.awt.Color(255, 255, 255));
+        txtstateProfile.setText("Santander");
+        txtstateProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
+        txtstateProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
+        txtstateProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txtstateProfileActionPerformed(evt);
             }
         });
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(44, 47, 51));
-        jTextField5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setText("Cantabria");
-        jTextField5.setSelectedTextColor(new java.awt.Color(44, 47, 51));
-        jTextField5.setSelectionColor(new java.awt.Color(44, 47, 51));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtProvinceProfile.setEditable(false);
+        txtProvinceProfile.setBackground(new java.awt.Color(44, 47, 51));
+        txtProvinceProfile.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtProvinceProfile.setForeground(new java.awt.Color(255, 255, 255));
+        txtProvinceProfile.setText("Cantabria");
+        txtProvinceProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
+        txtProvinceProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
+        txtProvinceProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtProvinceProfileActionPerformed(evt);
             }
         });
 
-        jTextField6.setEditable(false);
-        jTextField6.setBackground(new java.awt.Color(44, 47, 51));
-        jTextField6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField6.setText("698563214");
-        jTextField6.setSelectedTextColor(new java.awt.Color(44, 47, 51));
-        jTextField6.setSelectionColor(new java.awt.Color(44, 47, 51));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        txtphoneProfile.setEditable(false);
+        txtphoneProfile.setBackground(new java.awt.Color(44, 47, 51));
+        txtphoneProfile.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtphoneProfile.setForeground(new java.awt.Color(255, 255, 255));
+        txtphoneProfile.setText("698563214");
+        txtphoneProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
+        txtphoneProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
+        txtphoneProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                txtphoneProfileActionPerformed(evt);
             }
         });
 
@@ -163,40 +167,40 @@ public class Profile extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtnameProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtnumeroProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtstateProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtProvinceProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtphoneProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtnameProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtnumeroProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtstateProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtProvinceProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtphoneProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(178, Short.MAX_VALUE))
         );
 
@@ -330,29 +334,29 @@ public class Profile extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnModPerfilActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void txtnameProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameProfileActionPerformed
+            
+    }//GEN-LAST:event_txtnameProfileActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtnumeroProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumeroProfileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtnumeroProfileActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txtstateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstateProfileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txtstateProfileActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtProvinceProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProvinceProfileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtProvinceProfileActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void txtphoneProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtphoneProfileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_txtphoneProfileActionPerformed
 
     private void btnMuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMuroActionPerformed
          new Muro().setVisible(true);
@@ -407,11 +411,11 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField txtProvinceProfile;
+    private javax.swing.JTextField txtnameProfile;
+    private javax.swing.JTextField txtnumeroProfile;
+    private javax.swing.JTextField txtphoneProfile;
+    private javax.swing.JTextField txtstateProfile;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,27 +1,30 @@
 package BD;
 
-
+import Cifrados.Hash;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.text.LabelView;
 
 /**
  *
  * @author Antonio
  */
 public class BaseDatos {
-
+    
     Connection con;
     String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
     ResultSet resul;// crear cursor para manejar salidas de las consultas
+    private JTextField text;
 
     public void mensajes() {
 
-        try {           
+        try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion           
             //System.out.println(datos.getUserName());//sacar el servidor
             Statement sentence = con.createStatement();
@@ -33,31 +36,30 @@ public class BaseDatos {
                         + " Asunto: " + resul.getString(3) + " Mensaje: " + resul.getString(4));
 
             }
-            
+
             con.close();// cerrar la operacion
 
         } catch (SQLException ex) {
             System.out.println("error" + ex);
         }
-            
-    } 
 
-    public void selectProvince() {
+    }
+
+    public void selectProvince(String provincia) {
 
         try {
 
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             Statement sentence = con.createStatement();
-            String provincia = "";
-            String sql = "Select * from usuario WHERE province = '" + provincia + "'";
+            String sql = "Select * from usuarios WHERE province = '" + provincia + "'";
             //System.out.println(sql);
             resul = sentence.executeQuery(sql);
 
-            // resul = datos.getTables(null,"Iberia", null, null);
             while (resul.next()) {//recorre las tablas y me dice las que hay
-                System.out.println("Numero: "
-                        + resul.getString(1) + " Vuelo: " + resul.getString(2)
-                        + " Plaza: " + resul.getString(3) + " Fumador: " + resul.getString(4));
+                resul.getString(1);
+                resul.getString(2);
+                resul.getString(3);
+                resul.getString(4);
 
             }
             con.close();// cerrar la operacion
@@ -68,7 +70,9 @@ public class BaseDatos {
 
     }
 
-    public boolean registro(Usuarios usr) {
+   
+
+    public void registro(Usuarios usr) {
         try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             // creamos una variuable para meter el INSERT y se la pasamos al prepared statement 
@@ -79,64 +83,79 @@ public class BaseDatos {
             //asignamos cada variable siendo la primera cifra el numero de columna
             //y despues la variable           
             sentencia.setString(1, usr.getEmail());
-            sentencia.setString(2,usr.getPass());
+            sentencia.setString(2, usr.getPass());
             sentencia.setString(3, usr.getName());
             sentencia.setString(4, usr.getPhone());
             sentencia.setString(5, usr.getState());
             sentencia.setString(6, usr.getProvince());
             sentencia.setInt(7, usr.getNum());
             sentencia.executeUpdate();//ejecutamos las sentencias
-            
+
             sentencia.close();//cerrrar la sentencia
             con.close();//cerrar conexion
 
         } catch (SQLException ex) {
             System.out.println("Error al insertar Registro " + ex);
         }
-        return false;
-        
 
     }
 
-    public void borrarVuelo(String vuelo) {
+    public void borrarUsuario(String name) {
 
         try {
             // igual que el anterior pero borrando datos
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion           
-            String sql = "DELETE FROM Vuelos WHERE COD_VUELO = ?";
+            String sql = "DELETE FROM usuarios WHERE name = ?";
             PreparedStatement sentencia = con.prepareStatement(sql);
-            sentencia.setString(1, vuelo);
-            int filasDeVueltas = sentencia.executeUpdate();
+            sentencia.setString(1, name);
             sentencia.close();
-            if (filasDeVueltas != 1) {
-                System.out.println("vuelo no borrado");
-            } else {
-                System.out.println("vuelo borrado");
-            }
 
             con.close();// cerrar la operacion
 
         } catch (SQLException ex) {
-            System.out.println("error" + ex);
+            System.out.println("error en el borrado " + ex);
         }
 
     }
 
-    public void convertir() throws SQLException {
+    public void modificarPerfil(String name) throws SQLException {
 
         try {
-            //aqui hay que realizar dos actualizaciones se suman los no fumadores
-            //a fumadores y luego se deja a 0 fumadores
-            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
-            Statement sentence = con.createStatement();
-            sentence.execute("update vuelos set PLAZAS_NO_FUMADOR=(PLAZAS_NO_FUMADOR+PLAZAS_FUMADOR)");
-            sentence.execute("update vuelos set PLAZAS_FUMADOR=0");
 
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+            String sql = "UPDATE FROM usuarios WHERE name = ?";
+            PreparedStatement sentencia = con.prepareStatement(sql);
+
+            sentencia.setString(1, name);
+            sentencia.close();
+
+            con.close();// cerrar la operacion
         } catch (SQLException ex) {
-            System.out.println("Error al modificar los fumadores " + ex.getMessage());
+            System.out.println("Error al modificar los datos " + ex.getMessage());
         } finally {
             con.close();
         }
 
     }
+
+    public void perfil(String name) throws SQLException {
+
+        try {
+
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+            String sql = "select * from usuarios where name =?";
+            PreparedStatement sentencia = con.prepareStatement(sql);
+
+            sentencia.setString(1, name);
+            sentencia.close();
+
+            con.close();// cerrar la operacion
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar los datos " + ex.getMessage());
+        } finally {
+            con.close();
+        }
+
+    }
+
 }

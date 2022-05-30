@@ -5,12 +5,11 @@
         <group>
             <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/src/Cifrados/Hash.java</file>
             <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/src/Register.java</file>
-            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/src/Login.java</file>
             <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/src/BD/BaseDatos.java</file>
-            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/src/MessageCreate.java</file>
-            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/src/Welcome.java</file>
+            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/src/EditProfile.java</file>
             <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/src/MyMessage.java</file>
-            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/src/BD/Usuarios.java</file>
+            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/src/Profile.java</file>
+            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/src/Choose.java</file>
         </group>
     </open-files>
 </project-private>
