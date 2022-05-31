@@ -11,7 +11,9 @@ package JFrames;
  * @author Antonio
  */
 
+import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.UIManager;
 import org.xml.sax.HandlerBase;
 
 public class Welcome extends javax.swing.JFrame {
@@ -19,8 +21,7 @@ public class Welcome extends javax.swing.JFrame {
     public Welcome() {
         initComponents();
 
-        this.setSize(new Dimension(1000, 700));
-        this.setMinimumSize(new Dimension(400, 400));
+        UIManager.put( "nimbusOrange", new Color( 44,47,51 ) );//fondo de la barra
     }
 
     /**
@@ -34,23 +35,24 @@ public class Welcome extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblBienvenidos = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(114, 137, 218));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/logo.png"))); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Bienvenidos a BandBook");
+        lblBienvenidos.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lblBienvenidos.setForeground(new java.awt.Color(0, 0, 0));
+        lblBienvenidos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBienvenidos.setText("Bienvenidos a BandBook");
 
-        jProgressBar1.setBackground(new java.awt.Color(0, 0, 0));
+        jProgressBar1.setBackground(new java.awt.Color(255, 255, 255));
         jProgressBar1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jProgressBar1.setForeground(new java.awt.Color(255, 255, 255));
+        jProgressBar1.setBorder(null);
         jProgressBar1.setName("0\n"); // NOI18N
         jProgressBar1.setStringPainted(true);
 
@@ -62,7 +64,7 @@ public class Welcome extends javax.swing.JFrame {
                 .addContainerGap(313, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblBienvenidos, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(311, 311, 311))
         );
@@ -72,7 +74,7 @@ public class Welcome extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblBienvenidos, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(222, Short.MAX_VALUE))
@@ -137,6 +139,7 @@ public class Welcome extends javax.swing.JFrame {
         
         Welcome w = new Welcome();//Instanciamos la clase
         w.setVisible(true);//la hacemos visible
+        
         for (int i = 0; i <= 100; i++) {//iniciamos el ciclo de 0 a 100
             try {
                 Thread.sleep(20);//velocidad de carga
@@ -147,18 +150,20 @@ public class Welcome extends javax.swing.JFrame {
                 System.out.println(e);
             }
             if (i == 100) {// cuando llegue a 100 que cambie a otra ventana
-                this.setVisible(false);
+                
                 new Login().setVisible(true);
-            }
+                this.setVisible(false);
+           
 
+            }
         }
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel lblBienvenidos;
     // End of variables declaration//GEN-END:variables
 }

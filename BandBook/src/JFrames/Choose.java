@@ -237,15 +237,15 @@ public class Choose extends javax.swing.JFrame {
         
       
     }
-      public String banda(){
+      public boolean banda(){
         new Register().setVisible(true);
         this.setVisible(false);
-        return "nº integrantes";
+        return true;
         }
-      public String local(){
+      public boolean local(){
         new Register().setVisible(true);
         this.setVisible(false);
-        return "Aforo";
+        return true;
         }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
