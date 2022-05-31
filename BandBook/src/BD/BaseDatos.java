@@ -1,12 +1,17 @@
 package BD;
 
 import Cifrados.Hash;
+import JFrames.Profile;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.LabelView;
@@ -16,7 +21,7 @@ import javax.swing.text.LabelView;
  * @author Antonio
  */
 public class BaseDatos {
-    
+
     Connection con;
     String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
     ResultSet resul;// crear cursor para manejar salidas de las consultas
@@ -70,9 +75,7 @@ public class BaseDatos {
 
     }
 
-   
-
-    public void registro(Usuarios usr) {
+    public boolean registro(Usuarios usr) {
         try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             // creamos una variuable para meter el INSERT y se la pasamos al prepared statement 
@@ -81,7 +84,8 @@ public class BaseDatos {
                     + " VALUES (?,?,?,?,?,?,?)";
             PreparedStatement sentencia = con.prepareStatement(sql);
             //asignamos cada variable siendo la primera cifra el numero de columna
-            //y despues la variable           
+            //y despues la variable 
+
             sentencia.setString(1, usr.getEmail());
             sentencia.setString(2, usr.getPass());
             sentencia.setString(3, usr.getName());
@@ -97,7 +101,45 @@ public class BaseDatos {
         } catch (SQLException ex) {
             System.out.println("Error al insertar Registro " + ex);
         }
+        return false;
 
+    }
+
+    public int existeUsuario(String email) {
+  
+        PreparedStatement ps = null;
+        try {
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+             String sql = "SELECT idusuarios FROM usuarios WHERE email ='"+email+"'";
+             PreparedStatement sentencia = con.prepareStatement(sql);
+             
+             
+             resul = sentencia.executeQuery();
+             
+             if(resul.next()){
+             
+             return resul.getInt(1);
+             }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 1;
+
+        
+
+    }
+    
+    public boolean patronEmail(String email){
+     
+    Pattern pattern = Pattern.compile("^[a-zA-Z0-9_!#$%&'\\*+/=?{|}~^.-]+@[a-zA-Z0-9.-]+$");
+            
+            Matcher matcher = pattern.matcher(email);
+            
+        return matcher.find();
+    
+    
     }
 
     public void borrarUsuario(String name) {

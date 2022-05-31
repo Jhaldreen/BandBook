@@ -5,6 +5,7 @@
  */
 package BD;
 
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
@@ -23,7 +24,7 @@ public class BD_Main {
        Usuarios usu = new Usuarios();
        
        
-       
+     bd.existeUsuario("hola");
        
     
      }

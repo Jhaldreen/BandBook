@@ -1,40 +1,28 @@
+package JFrames;
 
 import BD.BaseDatos;
 import BD.Usuarios;
 import Cifrados.Hash;
-import java.awt.Dialog;
-import java.awt.Dimension;
+
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Antonio
  */
 public class Register extends javax.swing.JFrame {
- 
+
     Choose c = new Choose();
-    
-   
- 
+
     public Register() {
         initComponents();
-         
-          
-          
-   
+
     }
-
-
-    
-    
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -326,7 +314,7 @@ public class Register extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEmailRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailRegActionPerformed
-        
+
     }//GEN-LAST:event_txtEmailRegActionPerformed
 
     private void txtNameRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameRegActionPerformed
@@ -334,7 +322,7 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameRegActionPerformed
 
     private void txtPhoneRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneRegActionPerformed
-        
+
     }//GEN-LAST:event_txtPhoneRegActionPerformed
 
     private void txtStateRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStateRegActionPerformed
@@ -350,45 +338,66 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumRegActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-       
+
         BaseDatos bd = new BaseDatos();
         Usuarios usu = new Usuarios();
-        
+
         /*Al poner un password field no s devolverá un char hay qiue pasarlo a String */
         String pass = new String(txtPassReg.getPassword());
         String passcon = new String(txtPassConfirmReg.getPassword());
-        
-        if(pass.equals(passcon)){
-            
-            String newPass = Hash.sha1(pass);//encriptar la contraseña en la BD
 
-            int num = Integer.parseInt(txtNumReg.getText());
-           
-            usu.setEmail(txtEmailReg.getText());
-            usu.setPass(newPass);
-            usu.setName(txtNameReg.getText());
-            usu.setPhone(txtPhoneReg.getText());
-            usu.setState(txtStateReg.getText());
-            usu.setProvince(txtProvinceReg.getText());
-            usu.setNum(num);
-            
-            if(true){
-            JOptionPane.showMessageDialog(null, "usuario registrado");
-            bd.registro(usu);
-            new Profile().setVisible(true);
-            this.setVisible(false);
-            }else{
-                JOptionPane.showMessageDialog(null, "Registro incompleto");}
+        if (txtEmailReg.getText().equals("") || pass.equals("") || passcon.equals("")
+                || txtNameReg.getText().equals("")
+                || txtPhoneReg.getText().equals("")
+                || txtStateReg.getText().equals("")
+                || txtProvinceReg.getText().equals("")
+                || txtNumReg.getText().equals("")) {//campos vacios
+
+            JOptionPane.showMessageDialog(null, "Hay campos vacios, debe rellenar todos los campos");
+
+        } else {//si no estan vacios dejamos pasar
+
+            if (pass.equals(passcon)) {//comparar contraseñas
+
+                if (bd.existeUsuario(txtEmailReg.getText()) == 1) {//existe usuario
+
+                    String newPass = Hash.sha1(pass);//encriptar la contraseña en la BD
+
+                    int num = Integer.parseInt(txtNumReg.getText());
+
+                    usu.setEmail(txtEmailReg.getText());
+                    usu.setPass(newPass);
+                    usu.setName(txtNameReg.getText());
+                    usu.setPhone(txtPhoneReg.getText());
+                    usu.setState(txtStateReg.getText());
+                    usu.setProvince(txtProvinceReg.getText());
+                    usu.setNum(num);
+
+                    if (true) {
+                        JOptionPane.showMessageDialog(null, "usuario registrado correctamente");
+                        //bd.registro(usu);
+                        new Profile().setVisible(true);
+                        this.setVisible(false);
+                    } else {//registro no completado
+                        
+                        JOptionPane.showMessageDialog(null, "Error al registrar");
+                    }
+                } else {//existe email
+                    JOptionPane.showMessageDialog(null, "Email en uso");
+                }
+
+            } else {//comparar contraseñas
                 
-          
-        }else{JOptionPane.showMessageDialog(null, "Las contraseññas no coinciden");}
-          
+                JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+                
+            }//comparar contraseñas
+        }//campos vacios
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-     new Login().setVisible(true);
-     this.setVisible(false);
-        
+        new Login().setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
@@ -417,8 +426,6 @@ public class Register extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

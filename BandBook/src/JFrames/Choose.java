@@ -1,4 +1,8 @@
+package JFrames;
 
+
+
+import BD.BaseDatos;
 import java.awt.Dimension;
 
 /*
@@ -13,6 +17,7 @@ import java.awt.Dimension;
  */
 public class Choose extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form Choose
      */

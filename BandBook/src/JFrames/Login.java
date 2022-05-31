@@ -1,8 +1,9 @@
+package JFrames;
 
-import BD.BaseDatos;
-import BD.Usuarios;
+
+
+
 import Cifrados.Hash;
-import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

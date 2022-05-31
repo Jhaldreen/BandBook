@@ -1,3 +1,6 @@
+package JFrames;
+
+
 
 import java.awt.Component;
 
