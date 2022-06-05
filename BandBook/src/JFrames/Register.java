@@ -3,6 +3,7 @@ package JFrames;
 import BD.BaseDatos;
 import BD.Usuarios;
 import Cifrados.Hash;
+import static JFrames.Login.mandar;
 
 import javax.swing.JOptionPane;
 
@@ -21,7 +22,7 @@ public class Register extends javax.swing.JFrame {
 
     public Register() {
         initComponents();
-
+         
     }
 
     /**
@@ -361,7 +362,7 @@ public class Register extends javax.swing.JFrame {
             if (pass.equals(passcon)) {//comparar contraseñas
 
                 if (bd.existeUsuario(txtEmailReg.getText()) == 1) {//existe usuario
-
+                    
                     String newPass = Hash.sha1(pass);//encriptar la contraseña en la BD
 
                     int num = Integer.parseInt(txtNumReg.getText());
@@ -376,7 +377,8 @@ public class Register extends javax.swing.JFrame {
 
                     if (true) {
                         JOptionPane.showMessageDialog(null, "usuario registrado correctamente");
-                        //bd.registro(usu);
+                       // bd.registro(usu);
+                        
                         new Profile().setVisible(true);
                         this.setVisible(false);
                     } else {//registro no completado

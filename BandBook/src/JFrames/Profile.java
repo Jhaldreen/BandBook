@@ -1,27 +1,68 @@
 package JFrames;
 
-
-
 import BD.BaseDatos;
+import BD.Usuarios;
+import static JFrames.Login.mandar;
+import com.mysql.jdbc.Statement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.DriverManager;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Antonio
  */
 public class Profile extends javax.swing.JFrame {
 
-    BaseDatos bd = new BaseDatos();
+    Connection con;
+    String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
+    ResultSet resul;// crear cursor para manejar salidas de las consultas
+    
+
     /**
      * Creates new form Profile
      */
     public Profile() {
         initComponents();
+
+        try {
+
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+            Statement st = (Statement) con.createStatement();
+            /*recibimos el objeto para que la consulta nos saque los campos que necesitemos */
+            String sql = "select * from usuarios where email ='" + mandar + "'";
+            resul = st.executeQuery(sql);
+            while (resul.next()) {//recorre las tablas y me dice las que hay
+
+                //email 
+                txtemailProfi.setText(resul.getString(2));
+                // nombre 
+                txtnameProfile.setText(resul.getString(4));
+                //phone 
+                txtphoneProfile.setText(resul.getString(5));
+                // ciudad 
+                txtstateProfile.setText(resul.getString(6));
+                //provincia 
+                txtProvinceProfile.setText(resul.getString(6));
+                //numero
+                txtnumeroProfile.setText(resul.getString(8));
+
+            }
+
+            st.close();
+
+            con.close();// cerrar la operacion
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar los datos " + ex.getMessage());
+        }
     }
 
     /**
@@ -38,7 +79,7 @@ public class Profile extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtnameProfile = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtemailProfi = new javax.swing.JTextField();
         txtnumeroProfile = new javax.swing.JTextField();
         txtstateProfile = new javax.swing.JTextField();
         txtProvinceProfile = new javax.swing.JTextField();
@@ -86,7 +127,6 @@ public class Profile extends javax.swing.JFrame {
         txtnameProfile.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         txtnameProfile.setForeground(new java.awt.Color(255, 255, 255));
         txtnameProfile.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtnameProfile.setText("Nombre de la banda o local");
         txtnameProfile.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         txtnameProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
         txtnameProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
@@ -96,16 +136,15 @@ public class Profile extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(44, 47, 51));
-        jTextField2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setText("banda@banda.com");
-        jTextField2.setSelectedTextColor(new java.awt.Color(44, 47, 51));
-        jTextField2.setSelectionColor(new java.awt.Color(44, 47, 51));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtemailProfi.setEditable(false);
+        txtemailProfi.setBackground(new java.awt.Color(44, 47, 51));
+        txtemailProfi.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtemailProfi.setForeground(new java.awt.Color(255, 255, 255));
+        txtemailProfi.setSelectedTextColor(new java.awt.Color(44, 47, 51));
+        txtemailProfi.setSelectionColor(new java.awt.Color(44, 47, 51));
+        txtemailProfi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtemailProfiActionPerformed(evt);
             }
         });
 
@@ -113,7 +152,6 @@ public class Profile extends javax.swing.JFrame {
         txtnumeroProfile.setBackground(new java.awt.Color(44, 47, 51));
         txtnumeroProfile.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtnumeroProfile.setForeground(new java.awt.Color(255, 255, 255));
-        txtnumeroProfile.setText("Número de integrantes 4");
         txtnumeroProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
         txtnumeroProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
         txtnumeroProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +164,6 @@ public class Profile extends javax.swing.JFrame {
         txtstateProfile.setBackground(new java.awt.Color(44, 47, 51));
         txtstateProfile.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtstateProfile.setForeground(new java.awt.Color(255, 255, 255));
-        txtstateProfile.setText("Santander");
         txtstateProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
         txtstateProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
         txtstateProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +176,6 @@ public class Profile extends javax.swing.JFrame {
         txtProvinceProfile.setBackground(new java.awt.Color(44, 47, 51));
         txtProvinceProfile.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtProvinceProfile.setForeground(new java.awt.Color(255, 255, 255));
-        txtProvinceProfile.setText("Cantabria");
         txtProvinceProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
         txtProvinceProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
         txtProvinceProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +188,6 @@ public class Profile extends javax.swing.JFrame {
         txtphoneProfile.setBackground(new java.awt.Color(44, 47, 51));
         txtphoneProfile.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtphoneProfile.setForeground(new java.awt.Color(255, 255, 255));
-        txtphoneProfile.setText("698563214");
         txtphoneProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
         txtphoneProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
         txtphoneProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +208,7 @@ public class Profile extends javax.swing.JFrame {
                         .addComponent(txtnameProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtemailProfi, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(txtnumeroProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -195,7 +230,7 @@ public class Profile extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtemailProfi, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(txtnumeroProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
@@ -328,22 +363,22 @@ public class Profile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSmsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSmsActionPerformed
-         new MyMessage().setVisible(true);
+        new MyMessage().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSmsActionPerformed
 
     private void btnModPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPerfilActionPerformed
-         new EditProfile().setVisible(true);
-        
+        new EditProfile().setVisible(true);
+
     }//GEN-LAST:event_btnModPerfilActionPerformed
 
     private void txtnameProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameProfileActionPerformed
-            
+
     }//GEN-LAST:event_txtnameProfileActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtemailProfiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailProfiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtemailProfiActionPerformed
 
     private void txtnumeroProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumeroProfileActionPerformed
         // TODO add your handling code here:
@@ -362,7 +397,7 @@ public class Profile extends javax.swing.JFrame {
     }//GEN-LAST:event_txtphoneProfileActionPerformed
 
     private void btnMuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMuroActionPerformed
-         new Muro().setVisible(true);
+        new Muro().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnMuroActionPerformed
 
@@ -396,7 +431,9 @@ public class Profile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Profile().setVisible(true);
+                Profile p = new Profile();
+                p.setVisible(true);
+
             }
         });
     }
@@ -414,8 +451,8 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField txtProvinceProfile;
+    private javax.swing.JTextField txtemailProfi;
     private javax.swing.JTextField txtnameProfile;
     private javax.swing.JTextField txtnumeroProfile;
     private javax.swing.JTextField txtphoneProfile;

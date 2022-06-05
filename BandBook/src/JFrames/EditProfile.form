@@ -71,8 +71,8 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtName" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
                                   <Component id="txtPhone" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
-                                  <Component id="txtState" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
-                                  <Component id="tstProvince" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
+                                  <Component id="txtCity" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
+                                  <Component id="txtProvince" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
                                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                       <Component id="txtEmail" alignment="0" min="-2" pref="299" max="-2" attributes="0"/>
                                       <Component id="txtPass" alignment="0" min="-2" pref="299" max="-2" attributes="0"/>
@@ -129,12 +129,12 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtState" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="txtCity" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="regState" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tstProvince" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="txtProvince" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="regProvince" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -274,7 +274,7 @@
             <Property name="text" type="java.lang.String" value="Localidad"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtState">
+        <Component class="javax.swing.JTextField" name="txtCity">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -287,7 +287,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtStateActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCityActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="regProvince">
@@ -301,7 +301,7 @@
             <Property name="text" type="java.lang.String" value="Provincia"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tstProvince">
+        <Component class="javax.swing.JTextField" name="txtProvince">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -314,7 +314,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tstProvinceActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProvinceActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblregNum">

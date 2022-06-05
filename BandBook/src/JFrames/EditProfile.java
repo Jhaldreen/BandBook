@@ -1,24 +1,62 @@
 package JFrames;
 
+import static JFrames.Login.mandar;
+import com.mysql.jdbc.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Antonio
  */
 public class EditProfile extends javax.swing.JFrame {
-    Choose c = new Choose();
-    
-  
+
+    Connection con;
+    String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
+    ResultSet resul;// crear cursor para manejar salidas de las consultas
+
     /**
      * Creates new form EditProfile
      */
     public EditProfile() {
         initComponents();
+         try {
+
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+            Statement st = (Statement) con.createStatement();
+            /*recibimos el objeto para que la consulta nos saque los campos que necesitemos */
+            String sql = "select * from usuarios where email ='" + mandar + "'";
+            resul = st.executeQuery(sql);
+            while (resul.next()) {//recorre las tablas y me dice las que hay
+
+                //email 
+                txtEmail.setText(resul.getString(2));
+                // nombre 
+                txtName.setText(resul.getString(4));
+                //phone 
+                txtPhone.setText(resul.getString(5));
+                // ciudad 
+                txtCity.setText(resul.getString(6));
+                //provincia 
+                txtProvince.setText(resul.getString(6));
+                //numero
+                txtNum.setText(resul.getString(8));
+
+            }
+
+            st.close();
+
+            con.close();// cerrar la operacion
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar los datos " + ex.getMessage());
+        }
     }
 
     /**
@@ -40,9 +78,9 @@ public class EditProfile extends javax.swing.JFrame {
         regPhone = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
         regState = new javax.swing.JLabel();
-        txtState = new javax.swing.JTextField();
+        txtCity = new javax.swing.JTextField();
         regProvince = new javax.swing.JLabel();
-        tstProvince = new javax.swing.JTextField();
+        txtProvince = new javax.swing.JTextField();
         lblregNum = new javax.swing.JLabel();
         txtNum = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -114,12 +152,12 @@ public class EditProfile extends javax.swing.JFrame {
         regState.setForeground(new java.awt.Color(0, 0, 0));
         regState.setText("Localidad");
 
-        txtState.setBackground(new java.awt.Color(255, 255, 255));
-        txtState.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtState.setForeground(new java.awt.Color(0, 0, 0));
-        txtState.addActionListener(new java.awt.event.ActionListener() {
+        txtCity.setBackground(new java.awt.Color(255, 255, 255));
+        txtCity.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtCity.setForeground(new java.awt.Color(0, 0, 0));
+        txtCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStateActionPerformed(evt);
+                txtCityActionPerformed(evt);
             }
         });
 
@@ -127,12 +165,12 @@ public class EditProfile extends javax.swing.JFrame {
         regProvince.setForeground(new java.awt.Color(0, 0, 0));
         regProvince.setText("Provincia");
 
-        tstProvince.setBackground(new java.awt.Color(255, 255, 255));
-        tstProvince.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        tstProvince.setForeground(new java.awt.Color(0, 0, 0));
-        tstProvince.addActionListener(new java.awt.event.ActionListener() {
+        txtProvince.setBackground(new java.awt.Color(255, 255, 255));
+        txtProvince.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtProvince.setForeground(new java.awt.Color(0, 0, 0));
+        txtProvince.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tstProvinceActionPerformed(evt);
+                txtProvinceActionPerformed(evt);
             }
         });
 
@@ -200,8 +238,8 @@ public class EditProfile extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtState, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tstProvince, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtProvince, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -242,11 +280,11 @@ public class EditProfile extends javax.swing.JFrame {
                     .addComponent(regPhone))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(regState))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tstProvince, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProvince, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(regProvince))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -312,7 +350,7 @@ public class EditProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
-        
+
     }//GEN-LAST:event_txtPassActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -323,16 +361,16 @@ public class EditProfile extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhoneActionPerformed
 
-    private void txtStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStateActionPerformed
+    private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtStateActionPerformed
+    }//GEN-LAST:event_txtCityActionPerformed
 
-    private void tstProvinceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tstProvinceActionPerformed
+    private void txtProvinceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProvinceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tstProvinceActionPerformed
+    }//GEN-LAST:event_txtProvinceActionPerformed
 
     private void txtNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumActionPerformed
-        
+
     }//GEN-LAST:event_txtNumActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -345,7 +383,7 @@ public class EditProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioActionPerformed
-        
+
     }//GEN-LAST:event_btnBorrarUsuarioActionPerformed
 
     /**
@@ -382,7 +420,7 @@ public class EditProfile extends javax.swing.JFrame {
             }
         });
     }
-        
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrarUsuario;
@@ -399,12 +437,12 @@ public class EditProfile extends javax.swing.JFrame {
     private javax.swing.JLabel regPhone;
     private javax.swing.JLabel regProvince;
     private javax.swing.JLabel regState;
-    private javax.swing.JTextField tstProvince;
+    private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNum;
     private javax.swing.JTextField txtPass;
     private javax.swing.JTextField txtPhone;
-    private javax.swing.JTextField txtState;
+    private javax.swing.JTextField txtProvince;
     // End of variables declaration//GEN-END:variables
 }

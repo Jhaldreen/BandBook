@@ -1,8 +1,5 @@
 package JFrames;
 
-
-
-
 import Cifrados.Hash;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,9 +19,9 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+    /* creo un variable statica para poder recogerla en otras clases*/
+    public static String mandar = "";
+
     public Login() {
         initComponents();
 
@@ -39,17 +36,19 @@ public class Login extends javax.swing.JFrame {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             Statement sentence = con.createStatement();
             String sql = "Select * from usuarios WHERE email ='" + email + "' AND pass='" + pass + "'";
-
+            /* si los campos estan vacios */
             if (email.equals("") || pass.equals("")) {
                 JOptionPane.showMessageDialog(null, "rellena los campos");
 
             } else {
 
                 resul = sentence.executeQuery(sql);
-
+                /* si los campos son reocnocidos en la base de datos accedemos
+                y cambiamos de ventana*/
                 if (resul.next()) {
 
-                    JOptionPane.showMessageDialog(null, " acceso correcto");
+                    JOptionPane.showMessageDialog(null, " acceso correcto con email " + email);
+                    mandar = txtemailLogin.getText();
                     new Profile().setVisible(true);
                     this.setVisible(false);
 
@@ -215,7 +214,7 @@ public class Login extends javax.swing.JFrame {
         String pass = new String(txtpassLogin.getPassword());
         String newPass = Hash.sha1(pass);//encriptar la contraseña en la BD
         String email = txtemailLogin.getText();
-
+        mandar = email;//para mandar mediante un objeto a la clase profile
         login(email, newPass);
 
 

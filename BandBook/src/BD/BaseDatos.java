@@ -1,7 +1,6 @@
 package BD;
 
-import Cifrados.Hash;
-import JFrames.Profile;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,9 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.text.LabelView;
+
 
 /**
  *
@@ -25,30 +22,6 @@ public class BaseDatos {
     Connection con;
     String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
     ResultSet resul;// crear cursor para manejar salidas de las consultas
-    private JTextField text;
-
-    public void mensajes() {
-
-        try {
-            con = DriverManager.getConnection(url, "root", "");//establezco la conexion           
-            //System.out.println(datos.getUserName());//sacar el servidor
-            Statement sentence = con.createStatement();
-            resul = sentence.executeQuery("Select * from mensajes");
-            // resul = datos.getTables(null,"Iberia", null, null);
-
-            while (resul.next()) {//recorre las tablas y me dice las que hay
-                System.out.println(" Nombre " + resul.getString(2)
-                        + " Asunto: " + resul.getString(3) + " Mensaje: " + resul.getString(4));
-
-            }
-
-            con.close();// cerrar la operacion
-
-        } catch (SQLException ex) {
-            System.out.println("error" + ex);
-        }
-
-    }
 
     public void selectProvince(String provincia) {
 
@@ -106,40 +79,35 @@ public class BaseDatos {
     }
 
     public int existeUsuario(String email) {
-  
+
         PreparedStatement ps = null;
         try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
-             String sql = "SELECT idusuarios FROM usuarios WHERE email ='"+email+"'";
-             PreparedStatement sentencia = con.prepareStatement(sql);
-             
-             
-             resul = sentencia.executeQuery();
-             
-             if(resul.next()){
-             
-             return resul.getInt(1);
-             }
-            
-            
+            String sql = "SELECT count(idusuarios) FROM usuarios WHERE email ='" + email + "'";
+            PreparedStatement sentencia = con.prepareStatement(sql);
+
+            resul = sentencia.executeQuery();
+
+            if (resul.next()) {
+
+                return resul.getInt(1);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 1;
 
-        
-
     }
-    
-    public boolean patronEmail(String email){
-     
-    Pattern pattern = Pattern.compile("^[a-zA-Z0-9_!#$%&'\\*+/=?{|}~^.-]+@[a-zA-Z0-9.-]+$");
-            
-            Matcher matcher = pattern.matcher(email);
-            
+
+    public boolean patronEmail(String email) {
+
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9_!#$%&'\\*+/=?{|}~^.-]+@[a-zA-Z0-9.-]+$");
+
+        Matcher matcher = pattern.matcher(email);
+
         return matcher.find();
-    
-    
+
     }
 
     public void borrarUsuario(String name) {
@@ -166,26 +134,6 @@ public class BaseDatos {
 
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             String sql = "UPDATE FROM usuarios WHERE name = ?";
-            PreparedStatement sentencia = con.prepareStatement(sql);
-
-            sentencia.setString(1, name);
-            sentencia.close();
-
-            con.close();// cerrar la operacion
-        } catch (SQLException ex) {
-            System.out.println("Error al modificar los datos " + ex.getMessage());
-        } finally {
-            con.close();
-        }
-
-    }
-
-    public void perfil(String name) throws SQLException {
-
-        try {
-
-            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
-            String sql = "select * from usuarios where name =?";
             PreparedStatement sentencia = con.prepareStatement(sql);
 
             sentencia.setString(1, name);
