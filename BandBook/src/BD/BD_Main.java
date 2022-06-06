@@ -24,7 +24,7 @@ public class BD_Main {
        Usuarios usu = new Usuarios();
        
        
-    
+    bd.existeUsuario("local");
        
     
      }

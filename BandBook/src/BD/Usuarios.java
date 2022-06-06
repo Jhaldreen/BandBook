@@ -16,7 +16,7 @@ public class Usuarios {
     private String pass;
     private String name;
     private String phone;
-    private String state;
+    private String city;
     private String province;
     private int num;
 
@@ -62,12 +62,12 @@ public class Usuarios {
         this.phone = phone;
     }
 
-    public String getState() {
-        return state;
+    public String getCity() {
+        return city;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getProvince() {

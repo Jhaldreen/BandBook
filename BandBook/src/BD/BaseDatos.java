@@ -23,37 +23,13 @@ public class BaseDatos {
     String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
     ResultSet resul;// crear cursor para manejar salidas de las consultas
 
-    public void selectProvince(String provincia) {
-
-        try {
-
-            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
-            Statement sentence = con.createStatement();
-            String sql = "Select * from usuarios WHERE province = '" + provincia + "'";
-            //System.out.println(sql);
-            resul = sentence.executeQuery(sql);
-
-            while (resul.next()) {//recorre las tablas y me dice las que hay
-                resul.getString(1);
-                resul.getString(2);
-                resul.getString(3);
-                resul.getString(4);
-
-            }
-            con.close();// cerrar la operacion
-
-        } catch (SQLException ex) {
-            System.out.println("error" + ex);
-        }
-
-    }
 
     public boolean registro(Usuarios usr) {
         try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             // creamos una variuable para meter el INSERT y se la pasamos al prepared statement 
             String sql = " INSERT INTO usuarios "
-                    + "(email,pass,name,phone,state,province,num_people)"
+                    + "(email,pass,name,phone,city,province,num_people)"
                     + " VALUES (?,?,?,?,?,?,?)";
             PreparedStatement sentencia = con.prepareStatement(sql);
             //asignamos cada variable siendo la primera cifra el numero de columna
@@ -63,7 +39,7 @@ public class BaseDatos {
             sentencia.setString(2, usr.getPass());
             sentencia.setString(3, usr.getName());
             sentencia.setString(4, usr.getPhone());
-            sentencia.setString(5, usr.getState());
+            sentencia.setString(5, usr.getCity());
             sentencia.setString(6, usr.getProvince());
             sentencia.setInt(7, usr.getNum());
             sentencia.executeUpdate();//ejecutamos las sentencias
@@ -74,7 +50,7 @@ public class BaseDatos {
         } catch (SQLException ex) {
             System.out.println("Error al insertar Registro " + ex);
         }
-        return false;
+        return true;
 
     }
 
@@ -89,7 +65,7 @@ public class BaseDatos {
             resul = sentencia.executeQuery();
 
             if (resul.next()) {
-
+                    System.out.println(resul.getInt(1));
                 return resul.getInt(1);
             }
 

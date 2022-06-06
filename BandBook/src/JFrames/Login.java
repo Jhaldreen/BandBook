@@ -54,7 +54,7 @@ public class Login extends javax.swing.JFrame {
 
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "UPS algo paso");
+                    JOptionPane.showMessageDialog(null, "UPS algo paso comprueba la contraseña y el email");
                 }
             }
 
@@ -106,6 +106,8 @@ public class Login extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("ENTRAR");
+        btnLogin.setBorder(null);
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -116,6 +118,8 @@ public class Login extends javax.swing.JFrame {
         btnReg.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnReg.setForeground(new java.awt.Color(255, 255, 255));
         btnReg.setText("REGISTRARSE");
+        btnReg.setBorder(null);
+        btnReg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegActionPerformed(evt);
@@ -134,6 +138,8 @@ public class Login extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("SALIR");
+        jButton4.setBorder(null);
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);

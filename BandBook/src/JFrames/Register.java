@@ -18,13 +18,12 @@ import javax.swing.JOptionPane;
  */
 public class Register extends javax.swing.JFrame {
 
-    
-
     public Register() {
         initComponents();
-         
+        
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -153,7 +152,7 @@ public class Register extends javax.swing.JFrame {
 
         regNum.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         regNum.setForeground(new java.awt.Color(0, 0, 0));
-        regNum.setText("Número");
+        regNum.setText("Aforo");
 
         txtNumReg.setBackground(new java.awt.Color(255, 255, 255));
         txtNumReg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -336,7 +335,7 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_txtProvinceRegActionPerformed
 
     private void txtNumRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumRegActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtNumRegActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
@@ -361,8 +360,8 @@ public class Register extends javax.swing.JFrame {
 
             if (pass.equals(passcon)) {//comparar contraseñas
 
-                if (bd.existeUsuario(txtEmailReg.getText()) == 1) {//existe usuario
-                    
+                if (bd.existeUsuario(txtEmailReg.getText()) == 0) {//existe usuario
+
                     String newPass = Hash.sha1(pass);//encriptar la contraseña en la BD
 
                     int num = Integer.parseInt(txtNumReg.getText());
@@ -371,18 +370,18 @@ public class Register extends javax.swing.JFrame {
                     usu.setPass(newPass);
                     usu.setName(txtNameReg.getText());
                     usu.setPhone(txtPhoneReg.getText());
-                    usu.setState(txtStateReg.getText());
+                    usu.setCity(txtStateReg.getText());
                     usu.setProvince(txtProvinceReg.getText());
                     usu.setNum(num);
 
                     if (true) {
                         JOptionPane.showMessageDialog(null, "usuario registrado correctamente");
-                       // bd.registro(usu);
-                        
-                        new Profile().setVisible(true);
+                         bd.registro(usu);
+
+                        new Login().setVisible(true);
                         this.setVisible(false);
                     } else {//registro no completado
-                        
+
                         JOptionPane.showMessageDialog(null, "Error al registrar");
                     }
                 } else {//existe email
@@ -390,9 +389,9 @@ public class Register extends javax.swing.JFrame {
                 }
 
             } else {//comparar contraseñas
-                
+
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
-                
+
             }//comparar contraseñas
         }//campos vacios
     }//GEN-LAST:event_btnRegisterActionPerformed
@@ -400,7 +399,7 @@ public class Register extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         new Login().setVisible(true);
         this.setVisible(false);
-        
+
 
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -430,18 +429,18 @@ public class Register extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Register().setVisible(true);
+
               
-                
             }
         });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
