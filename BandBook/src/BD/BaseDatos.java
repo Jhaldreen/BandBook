@@ -130,27 +130,38 @@ public class BaseDatos {
 
     }
 
-    public void mensajes(String email) {
+    public boolean mensajes(Mensajes men) {
 
-        try {
-
+ try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
-            com.mysql.jdbc.Statement st = (com.mysql.jdbc.Statement) con.createStatement();
-            /*recibimos el objeto para que la consulta nos saque los campos que necesitemos */
-            String sql = "select * from mensajes where email ='" + email + "'";
-            resul = st.executeQuery(sql);
-            while (resul.next()) {//recorre las tablas y me dice las que hay
+            // creamos una variuable para meter el INSERT y se la pasamos al prepared statement 
+            String sql = " INSERT INTO mensajes "
+                    + "(name,asunto,texto,email)"
+                    + " VALUES (?,?,?,?)";
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            //asignamos cada variable siendo la primera cifra el numero de columna
+            //y despues la variable 
+            
+            sentencia.setString(1,men.getName());
+            sentencia.setString(2, men.getAsunto());
+            sentencia.setString(3, men.getTexto());
+            sentencia.setString(4, men.getEmail());
+            sentencia.executeUpdate();//ejecutamos las sentencias
 
-                System.out.println(resul.getString(5));
+            sentencia.close();//cerrrar la sentencia
+            con.close();//cerrar conexion
 
-            }
-
-            st.close();
-
-            con.close();// cerrar la operacion
         } catch (SQLException ex) {
-            System.out.println("Error al modificar los datos " + ex.getMessage());
-        }
+            System.out.println("Error al insertar mensaje " + ex);
+        }finally{
+     try {
+         
+         con.close();
+     } catch (SQLException ex) {
+         Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+     }
+            }
+        return true;
 
     }
 

@@ -21,7 +21,7 @@ import java.sql.DriverManager;
  * @author Antonio
  */
 public class Profile extends javax.swing.JFrame {
-
+    
     Connection con;
     String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
     ResultSet resul;// crear cursor para manejar salidas de las consultas
@@ -113,8 +113,6 @@ public class Profile extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         btnMuro = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        btnCrearMess = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         ModificarPerfilPanel = new javax.swing.JPanel();
         regEmail = new javax.swing.JLabel();
@@ -161,7 +159,7 @@ public class Profile extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addComponent(jLabel1)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +168,7 @@ public class Profile extends javax.swing.JFrame {
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 79, -1, -1));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 79, 370, -1));
 
         txtnameProfile.setEditable(false);
         txtnameProfile.setBackground(new java.awt.Color(44, 47, 51));
@@ -185,7 +183,7 @@ public class Profile extends javax.swing.JFrame {
                 txtnameProfileActionPerformed(evt);
             }
         });
-        jPanel2.add(txtnameProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 340, 61));
+        jPanel2.add(txtnameProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 340, 61));
 
         btnSms.setBackground(new java.awt.Color(153, 170, 181));
         btnSms.setForeground(new java.awt.Color(0, 0, 0));
@@ -228,29 +226,13 @@ public class Profile extends javax.swing.JFrame {
                 btnMuroActionPerformed(evt);
             }
         });
-        jPanel2.add(btnMuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 483, -1, -1));
+        jPanel2.add(btnMuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Buscar en el Muro");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 458, 134, -1));
-
-        btnCrearMess.setBackground(new java.awt.Color(153, 170, 181));
-        btnCrearMess.setForeground(new java.awt.Color(0, 0, 0));
-        btnCrearMess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/mensajesCrear.png"))); // NOI18N
-        btnCrearMess.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearMessActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnCrearMess, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 483, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Crear Mensaje");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 458, 134, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, 134, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 700));
 
@@ -478,10 +460,6 @@ public class Profile extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtnameProfileActionPerformed
 
-    private void btnCrearMessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMessActionPerformed
-        new MessageCreate().setVisible(true);
-    }//GEN-LAST:event_btnCrearMessActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -525,13 +503,11 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JPanel ModificarPerfilPanel;
     private javax.swing.JButton btnBorrarUsuario;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCrearMess;
     private javax.swing.JButton btnModPerfil;
     private javax.swing.JButton btnModicar;
     private javax.swing.JButton btnMuro;
     private javax.swing.JButton btnSms;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

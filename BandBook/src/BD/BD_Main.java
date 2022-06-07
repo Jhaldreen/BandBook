@@ -22,10 +22,10 @@ public class BD_Main {
     public static void main(String[] args) {
        BaseDatos bd = new BaseDatos();
        Usuarios usu = new Usuarios();
+       Mensajes men = new Mensajes();
        
        
-    bd.borrarUsuario("banda");
-       
+   bd.mensajes(men);
     
      }
          

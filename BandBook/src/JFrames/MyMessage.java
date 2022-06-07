@@ -1,10 +1,10 @@
 package JFrames;
 
 import static JFrames.Login.mandar;
+import static JFrames.Muro.reciboName;
 import com.mysql.jdbc.ResultSetMetaData;
 import com.mysql.jdbc.Statement;
 import java.awt.Color;
-import java.awt.Component;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -25,6 +25,10 @@ public class MyMessage extends javax.swing.JFrame {
     Connection con;
     String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
     ResultSet resul;// crear cursor para manejar salidas de las consultas
+    public static String reciboMyMessageEmail = "";
+    public static String reciboMyMessageNombre = "";
+    public static String reciboMyMessageAsunto = "";
+    public static String reciboMyMessagetxt = "";
 
     public MyMessage() {
         initComponents();
@@ -42,7 +46,10 @@ public class MyMessage extends javax.swing.JFrame {
             tm.setRowCount(0);
             while (resul.next()) {//recorre las tablas y me dice las que hay
                 //recogemos los datos dentro de la tabla
-                Object o[] = {resul.getString(3), resul.getString(5)};
+                Object o[] = {resul.getString(4),//email para poder esconderle
+                    resul.getString(1),//nombre
+                    resul.getString(2),//asunto
+                    resul.getString(3)};//texto
                 tm.addRow(o);
 
             }
@@ -69,8 +76,6 @@ public class MyMessage extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnMuro = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        btnCrearMess = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
         btnProfile = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -85,11 +90,13 @@ public class MyMessage extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(44, 47, 51));
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 700));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Nombre del grupo o Local");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 21, 288, 48));
 
         btnMuro.setBackground(new java.awt.Color(153, 170, 181));
         btnMuro.setForeground(new java.awt.Color(0, 0, 0));
@@ -100,25 +107,13 @@ public class MyMessage extends javax.swing.JFrame {
                 btnMuroActionPerformed(evt);
             }
         });
+        jPanel1.add(btnMuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 321, -1, 126));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Buscar en el Muro");
-
-        btnCrearMess.setBackground(new java.awt.Color(153, 170, 181));
-        btnCrearMess.setForeground(new java.awt.Color(0, 0, 0));
-        btnCrearMess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/mensajesCrear.png"))); // NOI18N
-        btnCrearMess.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearMessActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Crear Mensaje");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 296, 134, -1));
 
         btnProfile.setBackground(new java.awt.Color(153, 170, 181));
         btnProfile.setForeground(new java.awt.Color(0, 0, 0));
@@ -128,53 +123,13 @@ public class MyMessage extends javax.swing.JFrame {
                 btnProfileActionPerformed(evt);
             }
         });
+        jPanel1.add(btnProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 134, 130, 130));
 
         jLabel11.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Perfil");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnCrearMess))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnMuro, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnProfile)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnProfile)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMuro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCrearMess)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 103, 134, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/logo(1).png"))); // NOI18N
 
@@ -193,11 +148,11 @@ public class MyMessage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Mensaje"
+                "Email", "Nombre", "Asunto", "Mensaje"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -216,8 +171,9 @@ public class MyMessage extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("Nombre");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Mensaje");
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -248,7 +204,7 @@ public class MyMessage extends javax.swing.JFrame {
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -269,10 +225,6 @@ public class MyMessage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCrearMessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMessActionPerformed
-        new MessageCreate().setVisible(true);
-    }//GEN-LAST:event_btnCrearMessActionPerformed
-
     private void btnMuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMuroActionPerformed
         new Muro().setVisible(true);
         this.setVisible(false);
@@ -285,9 +237,12 @@ public class MyMessage extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
 
-        if (true) {
-            new ReadMessages().setVisible(true);
-        }
+        int fila = jTable1.rowAtPoint(evt.getPoint());
+        reciboMyMessageEmail = jTable1.getValueAt(fila, 0).toString();
+        reciboMyMessageNombre = jTable1.getValueAt(fila, 1).toString();
+        reciboMyMessageAsunto = jTable1.getValueAt(fila, 2).toString();
+        reciboMyMessagetxt = jTable1.getValueAt(fila, 3).toString();
+        new ReadMessages().setVisible(true);
 
 
     }//GEN-LAST:event_jTable1MouseClicked
@@ -330,10 +285,8 @@ public class MyMessage extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCrearMess;
     private javax.swing.JButton btnMuro;
     private javax.swing.JButton btnProfile;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
