@@ -1,5 +1,6 @@
 package JFrames;
 
+import BD.BaseDatos;
 import static JFrames.Login.mandar;
 import com.mysql.jdbc.Statement;
 import java.sql.Connection;
@@ -27,6 +28,7 @@ public class EditProfile extends javax.swing.JFrame {
      */
     public EditProfile() {
         initComponents();
+       
          try {
 
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
@@ -383,7 +385,11 @@ public class EditProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioActionPerformed
-
+        BaseDatos bd = new BaseDatos();
+        bd.borrarUsuario(mandar);
+        new Login().setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_btnBorrarUsuarioActionPerformed
 
     /**

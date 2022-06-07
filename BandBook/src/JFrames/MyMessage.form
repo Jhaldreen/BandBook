@@ -109,14 +109,17 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnMuro" min="-2" pref="134" max="-2" attributes="0"/>
-                          <Component id="jLabel11" min="-2" pref="134" max="-2" attributes="0"/>
-                          <Component id="btnProfile" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" min="-2" pref="134" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="jLabel10" min="-2" pref="134" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Component id="btnCrearMess" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="btnMuro" min="-2" pref="134" max="-2" attributes="0"/>
+                              <Component id="jLabel11" min="-2" pref="134" max="-2" attributes="0"/>
+                              <Component id="btnProfile" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel9" min="-2" pref="134" max="-2" attributes="0"/>
+                              <Component id="jLabel10" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -288,23 +291,9 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="2" rowCount="6">
-                    <Column editable="false" title="Nombre" type="java.lang.Object">
-                      <Data value="RockBeer the new"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                    </Column>
-                    <Column editable="false" title="Mensaje" type="java.lang.Object">
-                      <Data value="Me pongo en contacto on su banda por si le interesa dar un concierto.Gracias Un saludo"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                    </Column>
+                  <Table columnCount="2" rowCount="0">
+                    <Column editable="false" title="Nombre" type="java.lang.Object"/>
+                    <Column editable="false" title="Mensaje" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

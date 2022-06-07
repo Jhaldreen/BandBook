@@ -1,6 +1,6 @@
 package BD;
 
-
+import static JFrames.Login.mandar;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +22,6 @@ public class BaseDatos {
     Connection con;
     String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
     ResultSet resul;// crear cursor para manejar salidas de las consultas
-
 
     public boolean registro(Usuarios usr) {
         try {
@@ -65,7 +64,7 @@ public class BaseDatos {
             resul = sentencia.executeQuery();
 
             if (resul.next()) {
-                    System.out.println(resul.getInt(1));
+
                 return resul.getInt(1);
             }
 
@@ -86,20 +85,27 @@ public class BaseDatos {
 
     }
 
-    public void borrarUsuario(String name) {
+    public void borrarUsuario(String email) {
 
         try {
             // igual que el anterior pero borrando datos
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion           
-            String sql = "DELETE FROM usuarios WHERE name = ?";
+            String sql = "DELETE FROM usuarios WHERE email ='" + email + "'";
             PreparedStatement sentencia = con.prepareStatement(sql);
-            sentencia.setString(1, name);
-            sentencia.close();
+            
+            int borrado = sentencia.executeUpdate();
 
-            con.close();// cerrar la operacion
+            if (borrado != 1) {
 
+                JOptionPane.showMessageDialog(null, "perfil no borrado ");
+            } else {
+                
+                JOptionPane.showConfirmDialog(null, "Esta seguro de que desea borrar este perfil?");
+                
+            }
+  
         } catch (SQLException ex) {
-            System.out.println("error en el borrado " + ex);
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -109,7 +115,7 @@ public class BaseDatos {
         try {
 
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
-            String sql = "UPDATE FROM usuarios WHERE name = ?";
+            String sql = "UPDATE FROM usuarios WHERE email = ?";
             PreparedStatement sentencia = con.prepareStatement(sql);
 
             sentencia.setString(1, name);
@@ -120,6 +126,30 @@ public class BaseDatos {
             System.out.println("Error al modificar los datos " + ex.getMessage());
         } finally {
             con.close();
+        }
+
+    }
+
+    public void mensajes(String email) {
+
+        try {
+
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+            com.mysql.jdbc.Statement st = (com.mysql.jdbc.Statement) con.createStatement();
+            /*recibimos el objeto para que la consulta nos saque los campos que necesitemos */
+            String sql = "select * from mensajes where email ='" + email + "'";
+            resul = st.executeQuery(sql);
+            while (resul.next()) {//recorre las tablas y me dice las que hay
+
+                System.out.println(resul.getString(5));
+
+            }
+
+            st.close();
+
+            con.close();// cerrar la operacion
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar los datos " + ex.getMessage());
         }
 
     }

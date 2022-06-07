@@ -1,26 +1,58 @@
 package JFrames;
 
-
-
+import static JFrames.Login.mandar;
+import com.mysql.jdbc.ResultSetMetaData;
+import com.mysql.jdbc.Statement;
+import java.awt.Color;
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Antonio
  */
 public class MyMessage extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MyMessage
-     */
+    Connection con;
+    String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
+    ResultSet resul;// crear cursor para manejar salidas de las consultas
+
     public MyMessage() {
         initComponents();
+        try {
+
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+            Statement st = (Statement) con.createStatement();
+            /*recibimos el objeto para que la consulta nos saque los campos que necesitemos */
+            String sql = "select * from mensajes where email ='" + mandar + "'";
+            resul = st.executeQuery(sql);
+
+            //ResultSetMetaData rsM = (ResultSetMetaData) resul.getMetaData();
+            //int cantidadColumnas = rsM.getColumnCount();//contar columnas
+            DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
+            tm.setRowCount(0);
+            while (resul.next()) {//recorre las tablas y me dice las que hay
+                //recogemos los datos dentro de la tabla
+                Object o[] = {resul.getString(3), resul.getString(5)};
+                tm.addRow(o);
+
+            }
+
+            st.close();
+
+            con.close();// cerrar la operacion
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar los datos " + ex.getMessage());
+        }
     }
 
     /**
@@ -112,14 +144,16 @@ public class MyMessage extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(81, 81, 81)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnMuro, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProfile)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCrearMess)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btnCrearMess))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnMuro, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnProfile)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -156,12 +190,7 @@ public class MyMessage extends javax.swing.JFrame {
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"RockBeer the new", "Me pongo en contacto on su banda por si le interesa dar un concierto.Gracias Un saludo"},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Nombre", "Mensaje"
@@ -255,9 +284,12 @@ public class MyMessage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProfileActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if(true){
-        new ReadMessages().setVisible(true);
+
+        if (true) {
+            new ReadMessages().setVisible(true);
         }
+
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -291,12 +323,11 @@ public class MyMessage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MyMessage().setVisible(true);
-              
-                
+
             }
         });
     }
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearMess;

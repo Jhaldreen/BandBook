@@ -32,8 +32,33 @@ public class Profile extends javax.swing.JFrame {
      */
     public Profile() {
         initComponents();
+        ModificarPerfilPanel.setVisible(false);//panel modificar por defecto no le vemos
+       
+        /****************** Traer datos al perfil*********************************/
+        
+        try{
 
-        try {
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+            Statement st = (Statement) con.createStatement();
+            /*recibimos el objeto para que la consulta nos saque los campos que necesitemos */
+            String sql = "select * from usuarios where email ='" + mandar + "'";
+            resul = st.executeQuery(sql);
+            while (resul.next()) {//recorre las tablas y me dice las que hay
+           
+                // nombre 
+                txtnameProfile.setText(resul.getString(4));
+            }
+
+            st.close();
+
+            con.close();// cerrar la operacion
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar los datos " + ex.getMessage());
+        }
+        
+        /****************** Borrar perfil*********************************/
+        
+          try {
 
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             Statement st = (Statement) con.createStatement();
@@ -43,17 +68,17 @@ public class Profile extends javax.swing.JFrame {
             while (resul.next()) {//recorre las tablas y me dice las que hay
 
                 //email 
-                txtemailProfi.setText(resul.getString(2));
+                txtEmail.setText(resul.getString(2));
                 // nombre 
-                txtnameProfile.setText(resul.getString(4));
+                txtName.setText(resul.getString(4));
                 //phone 
-                txtphoneProfile.setText(resul.getString(5));
+                txtPhone.setText(resul.getString(5));
                 // ciudad 
-                txtstateProfile.setText(resul.getString(6));
+                txtCity.setText(resul.getString(6));
                 //provincia 
-                txtProvinceProfile.setText(resul.getString(6));
+                txtProvince.setText(resul.getString(6));
                 //numero
-                txtnumeroProfile.setText(resul.getString(8));
+                txtNum.setText(resul.getString(8));
 
             }
 
@@ -63,7 +88,10 @@ public class Profile extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("Error al modificar los datos " + ex.getMessage());
         }
+       
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,26 +107,46 @@ public class Profile extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtnameProfile = new javax.swing.JTextField();
-        txtemailProfi = new javax.swing.JTextField();
-        txtnumeroProfile = new javax.swing.JTextField();
-        txtstateProfile = new javax.swing.JTextField();
-        txtProvinceProfile = new javax.swing.JTextField();
-        txtphoneProfile = new javax.swing.JTextField();
         btnSms = new javax.swing.JButton();
-        btnModPerfil = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        btnModPerfil = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         btnMuro = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnCrearMess = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        ModificarPerfilPanel = new javax.swing.JPanel();
+        regEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        regPass = new javax.swing.JLabel();
+        txtPass = new javax.swing.JTextField();
+        lblregName = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        regPhone = new javax.swing.JLabel();
+        txtPhone = new javax.swing.JTextField();
+        regState = new javax.swing.JLabel();
+        txtCity = new javax.swing.JTextField();
+        regProvince = new javax.swing.JLabel();
+        txtProvince = new javax.swing.JTextField();
+        lblregNum = new javax.swing.JLabel();
+        txtNum = new javax.swing.JTextField();
+        btnModicar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnBorrarUsuario = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(114, 137, 218));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 700));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(44, 47, 51));
         jPanel2.setForeground(new java.awt.Color(44, 47, 51));
+        jPanel2.setPreferredSize(new java.awt.Dimension(400, 700));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -111,9 +159,9 @@ public class Profile extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(146, 146, 146)
+                .addGap(107, 107, 107)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,6 +169,8 @@ public class Profile extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 6, Short.MAX_VALUE))
         );
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 79, -1, -1));
 
         txtnameProfile.setEditable(false);
         txtnameProfile.setBackground(new java.awt.Color(44, 47, 51));
@@ -135,112 +185,7 @@ public class Profile extends javax.swing.JFrame {
                 txtnameProfileActionPerformed(evt);
             }
         });
-
-        txtemailProfi.setEditable(false);
-        txtemailProfi.setBackground(new java.awt.Color(44, 47, 51));
-        txtemailProfi.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtemailProfi.setForeground(new java.awt.Color(255, 255, 255));
-        txtemailProfi.setSelectedTextColor(new java.awt.Color(44, 47, 51));
-        txtemailProfi.setSelectionColor(new java.awt.Color(44, 47, 51));
-        txtemailProfi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtemailProfiActionPerformed(evt);
-            }
-        });
-
-        txtnumeroProfile.setEditable(false);
-        txtnumeroProfile.setBackground(new java.awt.Color(44, 47, 51));
-        txtnumeroProfile.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtnumeroProfile.setForeground(new java.awt.Color(255, 255, 255));
-        txtnumeroProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
-        txtnumeroProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
-        txtnumeroProfile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnumeroProfileActionPerformed(evt);
-            }
-        });
-
-        txtstateProfile.setEditable(false);
-        txtstateProfile.setBackground(new java.awt.Color(44, 47, 51));
-        txtstateProfile.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtstateProfile.setForeground(new java.awt.Color(255, 255, 255));
-        txtstateProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
-        txtstateProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
-        txtstateProfile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtstateProfileActionPerformed(evt);
-            }
-        });
-
-        txtProvinceProfile.setEditable(false);
-        txtProvinceProfile.setBackground(new java.awt.Color(44, 47, 51));
-        txtProvinceProfile.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtProvinceProfile.setForeground(new java.awt.Color(255, 255, 255));
-        txtProvinceProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
-        txtProvinceProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
-        txtProvinceProfile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProvinceProfileActionPerformed(evt);
-            }
-        });
-
-        txtphoneProfile.setEditable(false);
-        txtphoneProfile.setBackground(new java.awt.Color(44, 47, 51));
-        txtphoneProfile.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtphoneProfile.setForeground(new java.awt.Color(255, 255, 255));
-        txtphoneProfile.setSelectedTextColor(new java.awt.Color(44, 47, 51));
-        txtphoneProfile.setSelectionColor(new java.awt.Color(44, 47, 51));
-        txtphoneProfile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtphoneProfileActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(txtnameProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(txtemailProfi, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(txtnumeroProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(txtstateProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(txtProvinceProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(txtphoneProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(txtnameProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(txtemailProfi, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(txtnumeroProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(txtstateProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(txtProvinceProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(txtphoneProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(178, Short.MAX_VALUE))
-        );
+        jPanel2.add(txtnameProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 340, 61));
 
         btnSms.setBackground(new java.awt.Color(153, 170, 181));
         btnSms.setForeground(new java.awt.Color(0, 0, 0));
@@ -250,6 +195,13 @@ public class Profile extends javax.swing.JFrame {
                 btnSmsActionPerformed(evt);
             }
         });
+        jPanel2.add(btnSms, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 275, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Mis Mensajes");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 247, 136, 22));
 
         btnModPerfil.setBackground(new java.awt.Color(153, 170, 181));
         btnModPerfil.setForeground(new java.awt.Color(0, 0, 0));
@@ -259,21 +211,13 @@ public class Profile extends javax.swing.JFrame {
                 btnModPerfilActionPerformed(evt);
             }
         });
-
-        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Mis Mensajes");
-
-        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Buscar en el Muro");
+        jPanel2.add(btnModPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 275, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Modificar Perfil");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 247, 136, 22));
 
         btnMuro.setBackground(new java.awt.Color(153, 170, 181));
         btnMuro.setForeground(new java.awt.Color(0, 0, 0));
@@ -284,122 +228,259 @@ public class Profile extends javax.swing.JFrame {
                 btnMuroActionPerformed(evt);
             }
         });
+        jPanel2.add(btnMuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 483, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Mi Perfil");
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Buscar en el Muro");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 458, 134, -1));
+
+        btnCrearMess.setBackground(new java.awt.Color(153, 170, 181));
+        btnCrearMess.setForeground(new java.awt.Color(0, 0, 0));
+        btnCrearMess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/mensajesCrear.png"))); // NOI18N
+        btnCrearMess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearMessActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnCrearMess, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 483, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Crear Mensaje");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 458, 134, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 700));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/logo(1).png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSms))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnModPerfil)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(131, 131, 131))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnMuro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(101, Short.MAX_VALUE))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2))
-                .addGap(124, 124, 124)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnModPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(39, 39, 39)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMuro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        ModificarPerfilPanel.setBackground(new java.awt.Color(114, 137, 218));
+        ModificarPerfilPanel.setPreferredSize(new java.awt.Dimension(600, 600));
+        ModificarPerfilPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        regEmail.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        regEmail.setForeground(new java.awt.Color(0, 0, 0));
+        regEmail.setText("Email");
+        ModificarPerfilPanel.add(regEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 51, 53, -1));
+
+        txtEmail.setBackground(new java.awt.Color(255, 255, 255));
+        txtEmail.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(0, 0, 0));
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
+        ModificarPerfilPanel.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 52, 299, 24));
+
+        regPass.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        regPass.setForeground(new java.awt.Color(0, 0, 0));
+        regPass.setText("Contraseña");
+        ModificarPerfilPanel.add(regPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 94, 103, -1));
+
+        txtPass.setBackground(new java.awt.Color(255, 255, 255));
+        txtPass.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtPass.setForeground(new java.awt.Color(0, 0, 0));
+        txtPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassActionPerformed(evt);
+            }
+        });
+        ModificarPerfilPanel.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 95, 299, 24));
+
+        lblregName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lblregName.setForeground(new java.awt.Color(0, 0, 0));
+        lblregName.setText("Nombre");
+        ModificarPerfilPanel.add(lblregName, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 137, 103, -1));
+
+        txtName.setBackground(new java.awt.Color(255, 255, 255));
+        txtName.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtName.setForeground(new java.awt.Color(0, 0, 0));
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
+        ModificarPerfilPanel.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 138, 299, 24));
+
+        regPhone.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        regPhone.setForeground(new java.awt.Color(0, 0, 0));
+        regPhone.setText("Teléfono");
+        ModificarPerfilPanel.add(regPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 180, 103, -1));
+
+        txtPhone.setBackground(new java.awt.Color(255, 255, 255));
+        txtPhone.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtPhone.setForeground(new java.awt.Color(0, 0, 0));
+        txtPhone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhoneActionPerformed(evt);
+            }
+        });
+        ModificarPerfilPanel.add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 181, 299, 24));
+
+        regState.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        regState.setForeground(new java.awt.Color(0, 0, 0));
+        regState.setText("Localidad");
+        ModificarPerfilPanel.add(regState, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 223, 103, -1));
+
+        txtCity.setBackground(new java.awt.Color(255, 255, 255));
+        txtCity.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtCity.setForeground(new java.awt.Color(0, 0, 0));
+        txtCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCityActionPerformed(evt);
+            }
+        });
+        ModificarPerfilPanel.add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 224, 299, 24));
+
+        regProvince.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        regProvince.setForeground(new java.awt.Color(0, 0, 0));
+        regProvince.setText("Provincia");
+        ModificarPerfilPanel.add(regProvince, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 266, 103, -1));
+
+        txtProvince.setBackground(new java.awt.Color(255, 255, 255));
+        txtProvince.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtProvince.setForeground(new java.awt.Color(0, 0, 0));
+        txtProvince.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProvinceActionPerformed(evt);
+            }
+        });
+        ModificarPerfilPanel.add(txtProvince, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 267, 299, 24));
+
+        lblregNum.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lblregNum.setForeground(new java.awt.Color(0, 0, 0));
+        lblregNum.setText("Número Personas\n");
+        lblregNum.setToolTipText("");
+        ModificarPerfilPanel.add(lblregNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 309, -1, -1));
+
+        txtNum.setBackground(new java.awt.Color(255, 255, 255));
+        txtNum.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtNum.setForeground(new java.awt.Color(0, 0, 0));
+        txtNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumActionPerformed(evt);
+            }
+        });
+        ModificarPerfilPanel.add(txtNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 310, 299, 24));
+
+        btnModicar.setBackground(new java.awt.Color(0, 0, 0));
+        btnModicar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnModicar.setForeground(new java.awt.Color(255, 255, 255));
+        btnModicar.setText("Modificar");
+        btnModicar.setBorder(null);
+        btnModicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModicarActionPerformed(evt);
+            }
+        });
+        ModificarPerfilPanel.add(btnModicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 363, 171, 32));
+
+        btnCancelar.setBackground(new java.awt.Color(0, 0, 0));
+        btnCancelar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        ModificarPerfilPanel.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 363, 171, 32));
+
+        btnBorrarUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        btnBorrarUsuario.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnBorrarUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnBorrarUsuario.setText("Borrar Usuario");
+        btnBorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarUsuarioActionPerformed(evt);
+            }
+        });
+        ModificarPerfilPanel.add(btnBorrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 418, 171, 32));
+
+        jPanel1.add(ModificarPerfilPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 602, 489));
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Mi Perfil");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, 156, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSmsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSmsActionPerformed
-        new MyMessage().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnSmsActionPerformed
+    private void btnBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioActionPerformed
+        BaseDatos bd = new BaseDatos();
+        bd.borrarUsuario(mandar);
+        new Login().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnBorrarUsuarioActionPerformed
 
-    private void btnModPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPerfilActionPerformed
-        new EditProfile().setVisible(true);
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        new Profile().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    }//GEN-LAST:event_btnModPerfilActionPerformed
+    private void btnModicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModicarActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_btnModicarActionPerformed
 
-    private void txtnameProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameProfileActionPerformed
+    private void txtNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumActionPerformed
 
-    }//GEN-LAST:event_txtnameProfileActionPerformed
+    }//GEN-LAST:event_txtNumActionPerformed
 
-    private void txtemailProfiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailProfiActionPerformed
+    private void txtProvinceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProvinceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtemailProfiActionPerformed
+    }//GEN-LAST:event_txtProvinceActionPerformed
 
-    private void txtnumeroProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumeroProfileActionPerformed
+    private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnumeroProfileActionPerformed
+    }//GEN-LAST:event_txtCityActionPerformed
 
-    private void txtstateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstateProfileActionPerformed
+    private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtstateProfileActionPerformed
+    }//GEN-LAST:event_txtPhoneActionPerformed
 
-    private void txtProvinceProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProvinceProfileActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtProvinceProfileActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
 
-    private void txtphoneProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtphoneProfileActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtphoneProfileActionPerformed
+    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
+
+    }//GEN-LAST:event_txtPassActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnMuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMuroActionPerformed
         new Muro().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnMuroActionPerformed
+
+    private void btnModPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPerfilActionPerformed
+        ModificarPerfilPanel.setVisible(true);
+    }//GEN-LAST:event_btnModPerfilActionPerformed
+
+    private void btnSmsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSmsActionPerformed
+     new MyMessage().setVisible(true);
+    }//GEN-LAST:event_btnSmsActionPerformed
+
+    private void txtnameProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameProfileActionPerformed
+
+    }//GEN-LAST:event_txtnameProfileActionPerformed
+
+    private void btnCrearMessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMessActionPerformed
+        new MessageCreate().setVisible(true);
+    }//GEN-LAST:event_btnCrearMessActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,29 +514,46 @@ public class Profile extends javax.swing.JFrame {
             public void run() {
                 Profile p = new Profile();
                 p.setVisible(true);
+                
+                
 
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ModificarPerfilPanel;
+    private javax.swing.JButton btnBorrarUsuario;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCrearMess;
     private javax.swing.JButton btnModPerfil;
+    private javax.swing.JButton btnModicar;
     private javax.swing.JButton btnMuro;
     private javax.swing.JButton btnSms;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txtProvinceProfile;
-    private javax.swing.JTextField txtemailProfi;
+    private javax.swing.JLabel lblregName;
+    private javax.swing.JLabel lblregNum;
+    private javax.swing.JLabel regEmail;
+    private javax.swing.JLabel regPass;
+    private javax.swing.JLabel regPhone;
+    private javax.swing.JLabel regProvince;
+    private javax.swing.JLabel regState;
+    private javax.swing.JTextField txtCity;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtNum;
+    private javax.swing.JTextField txtPass;
+    private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtProvince;
     private javax.swing.JTextField txtnameProfile;
-    private javax.swing.JTextField txtnumeroProfile;
-    private javax.swing.JTextField txtphoneProfile;
-    private javax.swing.JTextField txtstateProfile;
     // End of variables declaration//GEN-END:variables
 }

@@ -45,7 +45,6 @@ public class ReadMessages extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Rock Beer the new");
 
         jTextArea1.setEditable(false);
         jTextArea1.setBackground(new java.awt.Color(60, 63, 65));
@@ -53,7 +52,6 @@ public class ReadMessages extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea1.setRows(5);
-        jTextArea1.setText("Me pongo en contacto on su banda por si le interesa dar un concierto.\nGracias Un saludo\n");
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton4.setBackground(new java.awt.Color(0, 0, 0));
