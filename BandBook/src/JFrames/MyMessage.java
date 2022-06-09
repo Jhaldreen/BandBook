@@ -25,10 +25,9 @@ public class MyMessage extends javax.swing.JFrame {
     Connection con;
     String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
     ResultSet resul;// crear cursor para manejar salidas de las consultas
-    public static String reciboMyMessageEmail = "";
-    public static String reciboMyMessageNombre = "";
-    public static String reciboMyMessageAsunto = "";
-    public static String reciboMyMessagetxt = "";
+    public static String reciboID = "";
+    
+
 
     public MyMessage() {
         initComponents();
@@ -46,10 +45,13 @@ public class MyMessage extends javax.swing.JFrame {
             tm.setRowCount(0);
             while (resul.next()) {//recorre las tablas y me dice las que hay
                 //recogemos los datos dentro de la tabla
-                Object o[] = {resul.getString(4),//email para poder esconderle
+                Object o[] = {resul.getString(6),
+                    resul.getString(4),//email para poder esconderle
                     resul.getString(1),//nombre
                     resul.getString(2),//asunto
                     resul.getString(3)};//texto
+                
+                
                 tm.addRow(o);
 
             }
@@ -148,12 +150,19 @@ public class MyMessage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Email", "Nombre", "Asunto", "Mensaje"
+                "id", "Email", "Nombre", "Asunto", "Mensaje"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -174,6 +183,9 @@ public class MyMessage extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setMinWidth(0);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
             jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(0);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -238,10 +250,10 @@ public class MyMessage extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
 
         int fila = jTable1.rowAtPoint(evt.getPoint());
-        reciboMyMessageEmail = jTable1.getValueAt(fila, 0).toString();
-        reciboMyMessageNombre = jTable1.getValueAt(fila, 1).toString();
-        reciboMyMessageAsunto = jTable1.getValueAt(fila, 2).toString();
-        reciboMyMessagetxt = jTable1.getValueAt(fila, 3).toString();
+        /* recojo el Idmensajes para mandarlo a la clase readmessages*/
+        reciboID = jTable1.getValueAt(fila, 0).toString();
+        
+        
         new ReadMessages().setVisible(true);
 
 

@@ -1,15 +1,25 @@
 package JFrames;
 
 import BD.BaseDatos;
+import BD.Mensajes;
 import BD.Usuarios;
+import Cifrados.Hash;
 import static JFrames.Login.mandar;
+import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
+import java.awt.Image;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.DriverManager;
+import javax.script.ScriptEngine;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,22 +31,24 @@ import java.sql.DriverManager;
  * @author Antonio
  */
 public class Profile extends javax.swing.JFrame {
-    
+
     Connection con;
     String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
     ResultSet resul;// crear cursor para manejar salidas de las consultas
-    
+    BaseDatos bd = new BaseDatos();
+    Usuarios usu = new Usuarios();
+    Mensajes men = new Mensajes();
 
-    /**
-     * Creates new form Profile
-     */
     public Profile() {
         initComponents();
         ModificarPerfilPanel.setVisible(false);//panel modificar por defecto no le vemos
-       
-        /****************** Traer datos al perfil*********************************/
         
-        try{
+
+        /**
+         * **************** Traer datos al
+         * perfil********************************
+         */
+        try {
 
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             Statement st = (Statement) con.createStatement();
@@ -44,9 +56,10 @@ public class Profile extends javax.swing.JFrame {
             String sql = "select * from usuarios where email ='" + mandar + "'";
             resul = st.executeQuery(sql);
             while (resul.next()) {//recorre las tablas y me dice las que hay
-           
+
                 // nombre 
                 txtnameProfile.setText(resul.getString(4));
+                btnpic.setText(resul.getString(9));
             }
 
             st.close();
@@ -55,20 +68,20 @@ public class Profile extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("Error al modificar los datos " + ex.getMessage());
         }
-        
-        /****************** Borrar perfil*********************************/
-        
-          try {
+
+        /**
+         * **************** boton  perfil********************************
+         */
+        try {
 
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             Statement st = (Statement) con.createStatement();
             /*recibimos el objeto para que la consulta nos saque los campos que necesitemos */
             String sql = "select * from usuarios where email ='" + mandar + "'";
             resul = st.executeQuery(sql);
+
             while (resul.next()) {//recorre las tablas y me dice las que hay
 
-                //email 
-                txtEmail.setText(resul.getString(2));
                 // nombre 
                 txtName.setText(resul.getString(4));
                 //phone 
@@ -76,7 +89,7 @@ public class Profile extends javax.swing.JFrame {
                 // ciudad 
                 txtCity.setText(resul.getString(6));
                 //provincia 
-                txtProvince.setText(resul.getString(6));
+                txtProvince.setText(resul.getString(7));
                 //numero
                 txtNum.setText(resul.getString(8));
 
@@ -88,10 +101,8 @@ public class Profile extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("Error al modificar los datos " + ex.getMessage());
         }
-       
-        
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,20 +116,19 @@ public class Profile extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        btnpic = new javax.swing.JButton();
+        lblpicProfile = new javax.swing.JLabel();
         txtnameProfile = new javax.swing.JTextField();
-        btnSms = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnModPerfil = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         btnMuro = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        btnSms1 = new javax.swing.JButton();
+        btnemailpass = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         ModificarPerfilPanel = new javax.swing.JPanel();
-        regEmail = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
-        regPass = new javax.swing.JLabel();
-        txtPass = new javax.swing.JTextField();
         lblregName = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         regPhone = new javax.swing.JLabel();
@@ -144,31 +154,45 @@ public class Profile extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(44, 47, 51));
         jPanel2.setForeground(new java.awt.Color(44, 47, 51));
         jPanel2.setPreferredSize(new java.awt.Dimension(400, 700));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/fotoPerfil.png"))); // NOI18N
+        btnpic.setBackground(new java.awt.Color(0, 0, 0));
+        btnpic.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnpic.setForeground(new java.awt.Color(255, 255, 255));
+        btnpic.setText("Modificar foto");
+        btnpic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpicActionPerformed(evt);
+            }
+        });
+
+        lblpicProfile.setBackground(new java.awt.Color(255, 255, 255));
+        lblpicProfile.setForeground(new java.awt.Color(255, 255, 255));
+        lblpicProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/fotoPerfil.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jLabel1)
-                .addContainerGap(135, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addComponent(lblpicProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnpic)
+                .addGap(17, 17, 17))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnpic))
+                    .addComponent(lblpicProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 79, 370, -1));
 
         txtnameProfile.setEditable(false);
         txtnameProfile.setBackground(new java.awt.Color(44, 47, 51));
@@ -183,23 +207,11 @@ public class Profile extends javax.swing.JFrame {
                 txtnameProfileActionPerformed(evt);
             }
         });
-        jPanel2.add(txtnameProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 340, 61));
-
-        btnSms.setBackground(new java.awt.Color(153, 170, 181));
-        btnSms.setForeground(new java.awt.Color(0, 0, 0));
-        btnSms.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/mismensajes.png"))); // NOI18N
-        btnSms.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSmsActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnSms, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 275, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Mis Mensajes");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 247, 136, 22));
 
         btnModPerfil.setBackground(new java.awt.Color(153, 170, 181));
         btnModPerfil.setForeground(new java.awt.Color(0, 0, 0));
@@ -209,13 +221,11 @@ public class Profile extends javax.swing.JFrame {
                 btnModPerfilActionPerformed(evt);
             }
         });
-        jPanel2.add(btnModPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 275, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Modificar Perfil");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 247, 136, 22));
 
         btnMuro.setBackground(new java.awt.Color(153, 170, 181));
         btnMuro.setForeground(new java.awt.Color(0, 0, 0));
@@ -226,13 +236,85 @@ public class Profile extends javax.swing.JFrame {
                 btnMuroActionPerformed(evt);
             }
         });
-        jPanel2.add(btnMuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Buscar en el Muro");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, 134, -1));
+
+        btnSms1.setBackground(new java.awt.Color(153, 170, 181));
+        btnSms1.setForeground(new java.awt.Color(0, 0, 0));
+        btnSms1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/mismensajes.png"))); // NOI18N
+        btnSms1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSms1ActionPerformed(evt);
+            }
+        });
+
+        btnemailpass.setBackground(new java.awt.Color(153, 170, 181));
+        btnemailpass.setForeground(new java.awt.Color(0, 0, 0));
+        btnemailpass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/arroba.png"))); // NOI18N
+        btnemailpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnemailpassActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Modificar email y pass");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtnameProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnSms1)
+                        .addGap(42, 42, 42)
+                        .addComponent(btnModPerfil))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnMuro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnemailpass))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(txtnameProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSms1)
+                    .addComponent(btnModPerfil))
+                .addGap(51, 51, 51)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMuro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnemailpass)))
+        );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 700));
 
@@ -243,42 +325,10 @@ public class Profile extends javax.swing.JFrame {
 
         ModificarPerfilPanel.setBackground(new java.awt.Color(114, 137, 218));
         ModificarPerfilPanel.setPreferredSize(new java.awt.Dimension(600, 600));
-        ModificarPerfilPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        regEmail.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        regEmail.setForeground(new java.awt.Color(0, 0, 0));
-        regEmail.setText("Email");
-        ModificarPerfilPanel.add(regEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 51, 53, -1));
-
-        txtEmail.setBackground(new java.awt.Color(255, 255, 255));
-        txtEmail.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtEmail.setForeground(new java.awt.Color(0, 0, 0));
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
-            }
-        });
-        ModificarPerfilPanel.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 52, 299, 24));
-
-        regPass.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        regPass.setForeground(new java.awt.Color(0, 0, 0));
-        regPass.setText("Contraseña");
-        ModificarPerfilPanel.add(regPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 94, 103, -1));
-
-        txtPass.setBackground(new java.awt.Color(255, 255, 255));
-        txtPass.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtPass.setForeground(new java.awt.Color(0, 0, 0));
-        txtPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassActionPerformed(evt);
-            }
-        });
-        ModificarPerfilPanel.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 95, 299, 24));
 
         lblregName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lblregName.setForeground(new java.awt.Color(0, 0, 0));
         lblregName.setText("Nombre");
-        ModificarPerfilPanel.add(lblregName, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 137, 103, -1));
 
         txtName.setBackground(new java.awt.Color(255, 255, 255));
         txtName.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -288,12 +338,10 @@ public class Profile extends javax.swing.JFrame {
                 txtNameActionPerformed(evt);
             }
         });
-        ModificarPerfilPanel.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 138, 299, 24));
 
         regPhone.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         regPhone.setForeground(new java.awt.Color(0, 0, 0));
         regPhone.setText("Teléfono");
-        ModificarPerfilPanel.add(regPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 180, 103, -1));
 
         txtPhone.setBackground(new java.awt.Color(255, 255, 255));
         txtPhone.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -303,12 +351,10 @@ public class Profile extends javax.swing.JFrame {
                 txtPhoneActionPerformed(evt);
             }
         });
-        ModificarPerfilPanel.add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 181, 299, 24));
 
         regState.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         regState.setForeground(new java.awt.Color(0, 0, 0));
         regState.setText("Localidad");
-        ModificarPerfilPanel.add(regState, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 223, 103, -1));
 
         txtCity.setBackground(new java.awt.Color(255, 255, 255));
         txtCity.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -318,12 +364,10 @@ public class Profile extends javax.swing.JFrame {
                 txtCityActionPerformed(evt);
             }
         });
-        ModificarPerfilPanel.add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 224, 299, 24));
 
         regProvince.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         regProvince.setForeground(new java.awt.Color(0, 0, 0));
         regProvince.setText("Provincia");
-        ModificarPerfilPanel.add(regProvince, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 266, 103, -1));
 
         txtProvince.setBackground(new java.awt.Color(255, 255, 255));
         txtProvince.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -333,13 +377,11 @@ public class Profile extends javax.swing.JFrame {
                 txtProvinceActionPerformed(evt);
             }
         });
-        ModificarPerfilPanel.add(txtProvince, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 267, 299, 24));
 
         lblregNum.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lblregNum.setForeground(new java.awt.Color(0, 0, 0));
         lblregNum.setText("Número Personas\n");
         lblregNum.setToolTipText("");
-        ModificarPerfilPanel.add(lblregNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 309, -1, -1));
 
         txtNum.setBackground(new java.awt.Color(255, 255, 255));
         txtNum.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -349,7 +391,6 @@ public class Profile extends javax.swing.JFrame {
                 txtNumActionPerformed(evt);
             }
         });
-        ModificarPerfilPanel.add(txtNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 310, 299, 24));
 
         btnModicar.setBackground(new java.awt.Color(0, 0, 0));
         btnModicar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -361,7 +402,6 @@ public class Profile extends javax.swing.JFrame {
                 btnModicarActionPerformed(evt);
             }
         });
-        ModificarPerfilPanel.add(btnModicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 363, 171, 32));
 
         btnCancelar.setBackground(new java.awt.Color(0, 0, 0));
         btnCancelar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -372,7 +412,6 @@ public class Profile extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        ModificarPerfilPanel.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 363, 171, 32));
 
         btnBorrarUsuario.setBackground(new java.awt.Color(0, 0, 0));
         btnBorrarUsuario.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -383,7 +422,87 @@ public class Profile extends javax.swing.JFrame {
                 btnBorrarUsuarioActionPerformed(evt);
             }
         });
-        ModificarPerfilPanel.add(btnBorrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 418, 171, 32));
+
+        javax.swing.GroupLayout ModificarPerfilPanelLayout = new javax.swing.GroupLayout(ModificarPerfilPanel);
+        ModificarPerfilPanel.setLayout(ModificarPerfilPanelLayout);
+        ModificarPerfilPanelLayout.setHorizontalGroup(
+            ModificarPerfilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModificarPerfilPanelLayout.createSequentialGroup()
+                .addGroup(ModificarPerfilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(ModificarPerfilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                                .addComponent(regPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                                .addComponent(regState, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                                .addComponent(regProvince, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(txtProvince, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                                .addComponent(lblregNum)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                                .addGap(141, 141, 141)
+                                .addComponent(btnBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                                .addComponent(lblregName, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(btnModicar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(172, 172, 172)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(54, 54, 54))
+        );
+        ModificarPerfilPanelLayout.setVerticalGroup(
+            ModificarPerfilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addGroup(ModificarPerfilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblregName)
+                    .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(ModificarPerfilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(regPhone)
+                    .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(ModificarPerfilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(regState)
+                    .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(ModificarPerfilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(regProvince)
+                    .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(txtProvince, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(ModificarPerfilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblregNum)
+                    .addGroup(ModificarPerfilPanelLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGroup(ModificarPerfilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnModicar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addComponent(btnBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
+        );
 
         jPanel1.add(ModificarPerfilPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 602, 489));
 
@@ -410,9 +529,50 @@ public class Profile extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnModicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModicarActionPerformed
-        
-        
-        
+
+//        try {
+//            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+//            // creamos una variuable para meter el INSERT y se la pasamos al prepared statement 
+//            String sql = " UPDATE usuarios SET email=?, name=?, phone=?,"
+//                    + "city=?, province=?,num_people=? WHERE email ='" + mandar + "'";
+//            PreparedStatement sentencia = (PreparedStatement) con.prepareStatement(sql);
+//            //asignamos cada variable siendo la primera cifra el numero de columna
+//            //y despues la variable 
+//            String pass = new String(txtPass.getPassword());
+//            String newPass = Hash.sha1(pass);//encriptar la contraseña en la BD
+//            int num = Integer.parseInt(txtNum.getText());
+//            sentencia.setString(1, txtEmail.getText());
+//            sentencia.setString(2, txtName.getText());
+//            sentencia.setString(3, txtPhone.getText());
+//            sentencia.setString(4, txtCity.getText());
+//            sentencia.setString(5, txtProvince.getText());
+//            sentencia.setInt(6, num);
+//            sentencia.executeUpdate();//ejecutamos las sentencias
+//
+//            sentencia.close();//cerrrar la sentencia
+//            con.close();//cerrar conexion
+//
+//        } catch (SQLException ex) {
+//            System.out.println("Error al modificar Registro " + ex);
+//        }
+        if (bd.modificarPerfil(usu)) {
+
+            int num = Integer.parseInt(txtNum.getText());
+
+            //usu.setEmail(txtEmail.getText());
+            usu.setName(txtName.getText());
+            usu.setPhone(txtPhone.getText());
+            usu.setCity(txtCity.getText());
+            usu.setProvince(txtProvince.getText());
+            usu.setNum(num);
+
+            JOptionPane.showMessageDialog(null, "Usuario modificado perfectamente");
+            bd.modificarPerfil(usu);
+            bd.modificarPerfilmensajes(men);//modificar el nombre de la tabla mensajes
+        } else {
+            JOptionPane.showMessageDialog(null, "usuario no modificado");
+        }
+
     }//GEN-LAST:event_btnModicarActionPerformed
 
     private void txtNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumActionPerformed
@@ -435,14 +595,6 @@ public class Profile extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
 
-    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
-
-    }//GEN-LAST:event_txtPassActionPerformed
-
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-
-    }//GEN-LAST:event_txtEmailActionPerformed
-
     private void btnMuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMuroActionPerformed
         new Muro().setVisible(true);
         this.setVisible(false);
@@ -452,13 +604,54 @@ public class Profile extends javax.swing.JFrame {
         ModificarPerfilPanel.setVisible(true);
     }//GEN-LAST:event_btnModPerfilActionPerformed
 
-    private void btnSmsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSmsActionPerformed
-     new MyMessage().setVisible(true);
-    }//GEN-LAST:event_btnSmsActionPerformed
+    private void btnpicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpicActionPerformed
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        FileFilter filtro1 = new FileNameExtensionFilter("JPG file", "jpg");
+        FileFilter filtro2 = new FileNameExtensionFilter("PNG file","png");
+         int seleccion = archivo.showOpenDialog(this);
+          archivo.setFileFilter(filtro1);
+
+        archivo.addChoosableFileFilter(filtro2);
+
+        archivo.setDialogTitle("Abrir Archivo");
+
+        File ruta = new File("C:/");
+
+        archivo.setCurrentDirectory(ruta);
+        
+         int ventana = archivo.showOpenDialog(null);
+         
+         if(seleccion== JFileChooser.APPROVE_OPTION){
+         
+         File fichero = archivo.getSelectedFile();
+         
+         File file = archivo.getSelectedFile();
+
+                btnpic.setText(String.valueOf(file));
+
+                Image foto = getToolkit().getImage(lblpicProfile.getText());
+
+                foto = foto.getScaledInstance(210, 210, Image.SCALE_DEFAULT);
+
+               
+         
+         
+         }
+    }//GEN-LAST:event_btnpicActionPerformed
 
     private void txtnameProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameProfileActionPerformed
 
     }//GEN-LAST:event_txtnameProfileActionPerformed
+
+    private void btnSms1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSms1ActionPerformed
+        new MyMessage().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnSms1ActionPerformed
+
+    private void btnemailpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemailpassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnemailpassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -492,8 +685,6 @@ public class Profile extends javax.swing.JFrame {
             public void run() {
                 Profile p = new Profile();
                 p.setVisible(true);
-                
-                
 
             }
         });
@@ -506,28 +697,27 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JButton btnModPerfil;
     private javax.swing.JButton btnModicar;
     private javax.swing.JButton btnMuro;
-    private javax.swing.JButton btnSms;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnSms1;
+    private javax.swing.JButton btnemailpass;
+    private javax.swing.JButton btnpic;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblpicProfile;
     private javax.swing.JLabel lblregName;
     private javax.swing.JLabel lblregNum;
-    private javax.swing.JLabel regEmail;
-    private javax.swing.JLabel regPass;
     private javax.swing.JLabel regPhone;
     private javax.swing.JLabel regProvince;
     private javax.swing.JLabel regState;
     private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNum;
-    private javax.swing.JTextField txtPass;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtProvince;
     private javax.swing.JTextField txtnameProfile;

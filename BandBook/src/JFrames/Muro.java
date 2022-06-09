@@ -1,6 +1,5 @@
 package JFrames;
 
-
 import com.mysql.jdbc.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,10 +25,10 @@ public class Muro extends javax.swing.JFrame {
     ResultSet resul;// crear cursor para manejar salidas de las consultas
     public static String recibo = "";
     public static String reciboName = "";
-    
+
     public Muro() {
         initComponents();
-       
+
         try {
 
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
@@ -38,16 +37,18 @@ public class Muro extends javax.swing.JFrame {
             String sql = "select * from usuarios ";
             resul = st.executeQuery(sql);
 
-            //ResultSetMetaData rsM = (ResultSetMetaData) resul.getMetaData();
-            //int cantidadColumnas = rsM.getColumnCount();//contar columnas
+            /*Defino la tabla*/
             DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(0);
+            /* Escondo el valor email de la columna 1 para que no se vea*/
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(0);           
+            /*se empieza de 0*/
             tm.setRowCount(0);
             while (resul.next()) {//recorre las tablas y me dice las que hay
                 //recogemos los datos dentro de la tabla
-                
-                Object o[] = {resul.getString(2),resul.getString(4), resul.getString(6), resul.getString(7)};
-                
+                /*creamos un array para que vayan saliendo los resultados de las consultas*/
+                Object o[] = {resul.getString(2), resul.getString(4),
+                              resul.getString(6), resul.getString(7)};
+
                 tm.addRow(o);
 
             }
@@ -303,35 +304,35 @@ public class Muro extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
+
         try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             Statement st = (Statement) con.createStatement();
             /*recibimos el objeto para que la consulta nos saque los campos que necesitemos */
             String sql = "select * from usuarios"
-                      + " where name ='"+txtNombre.getText()+"' OR province ='"
-                      +this.jComboBox1.getSelectedItem()+"'";
+                    + " where name ='" + txtNombre.getText() + "' OR province ='"
+                    + this.jComboBox1.getSelectedItem() + "'";
             resul = st.executeQuery(sql);
             DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(0);
             tm.setRowCount(0);
             while (resul.next()) {//recorre las tablas y me dice las que hay
                 //recogemos los datos dentro de la tabla
-                
-                Object o[] = {resul.getString(2),resul.getString(4), resul.getString(6), resul.getString(7)};
-                
+
+                Object o[] = {resul.getString(2), resul.getString(4), resul.getString(6), resul.getString(7)};
+
                 tm.addRow(o);
             }
 
             st.close();
 
             con.close();// cerrar la operacion
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Muro.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
@@ -365,7 +366,7 @@ public class Muro extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Muro().setVisible(true);
-                
+
             }
         });
     }

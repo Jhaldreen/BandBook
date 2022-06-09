@@ -110,34 +110,15 @@ public class BaseDatos {
 
     }
 
-    public void modificarPerfil(String name) throws SQLException {
-
-        try {
-
-            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
-            String sql = "UPDATE FROM usuarios WHERE email = ?";
-            PreparedStatement sentencia = con.prepareStatement(sql);
-
-            sentencia.setString(1, name);
-            sentencia.close();
-
-            con.close();// cerrar la operacion
-        } catch (SQLException ex) {
-            System.out.println("Error al modificar los datos " + ex.getMessage());
-        } finally {
-            con.close();
-        }
-
-    }
-
+   
     public boolean mensajes(Mensajes men) {
 
  try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
-            // creamos una variuable para meter el INSERT y se la pasamos al prepared statement 
+            // creamos una variable para meter el INSERT y se la pasamos al prepared statement 
             String sql = " INSERT INTO mensajes "
-                    + "(name,asunto,texto,email)"
-                    + " VALUES (?,?,?,?)";
+                    + "(name,asunto,texto,email,env_email)"
+                    + " VALUES (?,?,?,?,?)";
             PreparedStatement sentencia = con.prepareStatement(sql);
             //asignamos cada variable siendo la primera cifra el numero de columna
             //y despues la variable 
@@ -146,6 +127,7 @@ public class BaseDatos {
             sentencia.setString(2, men.getAsunto());
             sentencia.setString(3, men.getTexto());
             sentencia.setString(4, men.getEmail());
+            sentencia.setString(5, men.getEnvemail());
             sentencia.executeUpdate();//ejecutamos las sentencias
 
             sentencia.close();//cerrrar la sentencia
@@ -164,5 +146,57 @@ public class BaseDatos {
         return true;
 
     }
+  
+     public boolean modificarPerfil(Usuarios usr) {
+        try {
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+            // creamos una variuable para meter el INSERT y se la pasamos al prepared statement 
+            String sql = " UPDATE usuarios SET name=?, phone=?,"
+                    + "city=?, province=?,num_people=? WHERE email ='"+mandar+"'";
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            //asignamos cada variable siendo la primera cifra el numero de columna
+            //y despues la variable 
+
+            //sentencia.setString(1, usr.getEmail());
+            //sentencia.setString(2, usr.getPass());
+            sentencia.setString(1, usr.getName());
+            sentencia.setString(2, usr.getPhone());
+            sentencia.setString(3, usr.getCity());
+            sentencia.setString(4, usr.getProvince());
+            sentencia.setInt(5, usr.getNum());
+            sentencia.executeUpdate();//ejecutamos las sentencias
+
+            sentencia.close();//cerrrar la sentencia
+            con.close();//cerrar conexion
+
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar Registro " + ex);
+        }
+        return true;
+
+    }
+     public void modificarPerfilmensajes(Mensajes men) {
+        try {
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+            // creamos una variuable para meter el INSERT y se la pasamos al prepared statement 
+            String sql = " UPDATE mensajes SET name=? WHERE email ='"+mandar+"'";
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            //asignamos cada variable siendo la primera cifra el numero de columna
+            //y despues la variable 
+
+            sentencia.setString(1, men.getName());
+           
+            sentencia.executeUpdate();//ejecutamos las sentencias
+
+            sentencia.close();//cerrrar la sentencia
+            con.close();//cerrar conexion
+
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar mensajes nombre " + ex);
+        }
+       
+    }
+     
+     
 
 }

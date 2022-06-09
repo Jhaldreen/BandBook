@@ -2,15 +2,15 @@ package JFrames;
 
 import BD.BaseDatos;
 import BD.Mensajes;
-import static JFrames.Muro.recibo;
-import static JFrames.Muro.reciboName;
-import static JFrames.MyMessage.reciboMyMessageAsunto;
-import static JFrames.MyMessage.reciboMyMessageEmail;
-import static JFrames.MyMessage.reciboMyMessageNombre;
-import static JFrames.MyMessage.reciboMyMessagetxt;
+
+import static JFrames.MyMessage.reciboID;
+import com.mysql.jdbc.Statement;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+
 
 
 /*
@@ -27,14 +27,41 @@ public class ReadMessages extends javax.swing.JFrame {
     Connection con;
     String url = "jdbc:mysql://127.0.0.1:3306/BandBook";//indica la direccion del servidor
     ResultSet resul;// crear cursor para manejar salidas de las consultas
-
+    
     public ReadMessages() {
         initComponents();
-        txtAsunto.setText(reciboMyMessageAsunto);
-        lblName.setText(reciboMyMessageNombre);
-        txtLeer.setText(reciboMyMessagetxt);
-        lblEmail.setVisible(false);//para que no aparezca el email y poder cogerlo
-        lblEmail.setText(reciboMyMessageEmail);
+        lblEmail.setVisible(false);
+        lblenEmail.setVisible(false);
+         try {
+
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+            Statement st = (Statement) con.createStatement();
+            /*recibimos el ID para que la consulta nos saque los campos que necesitemos */
+            String sql = "select * from mensajes where idmensajes ='" + reciboID + "'";
+            resul = st.executeQuery(sql);
+
+            while (resul.next()) {//recorre las tablas y me dice las que hay
+
+                // nombre 
+                lblName.setText(resul.getString(1));
+                //phone 
+                txtAsunto1.setText(resul.getString(2));
+                // ciudad 
+                txtLeer.setText(resul.getString(3));
+                //provincia 
+                lblEmail.setText(resul.getString(4));
+                //numero
+                lblenEmail.setText(resul.getString(5));
+
+            }
+
+            st.close();
+
+            con.close();// cerrar la operacion
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar los datos " + ex.getMessage());
+        }
+
     }
 
     /**
@@ -56,21 +83,28 @@ public class ReadMessages extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnResponder = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        txtAsunto = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         btnVaciar = new javax.swing.JButton();
         lblEmail = new javax.swing.JLabel();
+        lblenEmail = new javax.swing.JLabel();
+        txtAsunto1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(44, 47, 51));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Mensajes recibido de:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 250, 56));
 
         lblName.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lblName.setForeground(new java.awt.Color(255, 255, 255));
         lblName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel1.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 30, 290, 52));
 
         txtLeer.setBackground(new java.awt.Color(255, 255, 255));
         txtLeer.setColumns(20);
@@ -78,6 +112,8 @@ public class ReadMessages extends javax.swing.JFrame {
         txtLeer.setForeground(new java.awt.Color(0, 0, 0));
         txtLeer.setRows(5);
         jScrollPane1.setViewportView(txtLeer);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 165, 614, 210));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -99,9 +135,12 @@ public class ReadMessages extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Mensajes recibido de:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 250, 56));
 
         btnResponder.setBackground(new java.awt.Color(0, 0, 0));
         btnResponder.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -112,6 +151,7 @@ public class ReadMessages extends javax.swing.JFrame {
                 btnResponderActionPerformed(evt);
             }
         });
+        jPanel1.add(btnResponder, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 402, 162, 37));
 
         btnCancelar.setBackground(new java.awt.Color(0, 0, 0));
         btnCancelar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -122,15 +162,17 @@ public class ReadMessages extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(475, 402, 162, 37));
 
-        txtAsunto.setBackground(new java.awt.Color(255, 255, 255));
-        txtAsunto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtAsunto.setForeground(new java.awt.Color(0, 0, 0));
-        txtAsunto.addActionListener(new java.awt.event.ActionListener() {
+        txtName.setBackground(new java.awt.Color(255, 255, 255));
+        txtName.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtName.setForeground(new java.awt.Color(0, 0, 0));
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAsuntoActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
+        jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 215, 34));
 
         btnVaciar.setBackground(new java.awt.Color(0, 0, 0));
         btnVaciar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -141,66 +183,33 @@ public class ReadMessages extends javax.swing.JFrame {
                 btnVaciarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnVaciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 402, 162, 37));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnResponder, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
-                                .addComponent(btnVaciar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37)
-                .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnResponder, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVaciar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(134, 134, 134))
-        );
+        lblEmail.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 92, 84, 21));
+
+        lblenEmail.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(lblenEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 113, 21));
+
+        txtAsunto1.setBackground(new java.awt.Color(255, 255, 255));
+        txtAsunto1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtAsunto1.setForeground(new java.awt.Color(0, 0, 0));
+        txtAsunto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAsunto1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtAsunto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 210, 34));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Soy");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 30, 20));
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Asunto");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 50, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,11 +219,27 @@ public class ReadMessages extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarActionPerformed
+        //vaciamos los campos
+        txtName.setText("");
+        txtLeer.setText("");
+        txtAsunto1.setText("");
+    }//GEN-LAST:event_btnVaciarActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        new MyMessage().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResponderActionPerformed
 
@@ -223,10 +248,11 @@ public class ReadMessages extends javax.swing.JFrame {
 
         if (bd.mensajes(men)) {
 
-            men.setName(reciboMyMessageNombre);
-            men.setAsunto(txtAsunto.getText());
+            men.setName(txtName.getText());
+            men.setAsunto(txtAsunto1.getText());
             men.setTexto(txtLeer.getText());
-            men.setEmail(reciboMyMessageEmail);
+            men.setEmail(lblenEmail.getText());
+            men.setEnvemail(lblEmail.getText());
 
             JOptionPane.showMessageDialog(null, "Mensaje enviado correctamente");
             bd.mensajes(men);
@@ -235,23 +261,11 @@ public class ReadMessages extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Mensaje no enviado intentelo de nuevo");
         }
 
-
     }//GEN-LAST:event_btnResponderActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        new Profile().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void txtAsuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAsuntoActionPerformed
+    private void txtAsunto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAsunto1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAsuntoActionPerformed
-
-    private void btnVaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarActionPerformed
-       //vaciamos los campos
-        txtAsunto.setText("");
-        txtLeer.setText("");
-    }//GEN-LAST:event_btnVaciarActionPerformed
+    }//GEN-LAST:event_txtAsunto1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,15 +306,19 @@ public class ReadMessages extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnResponder;
     private javax.swing.JButton btnVaciar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblName;
-    private javax.swing.JTextField txtAsunto;
+    private javax.swing.JLabel lblenEmail;
+    private javax.swing.JTextField txtAsunto1;
     private javax.swing.JTextArea txtLeer;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

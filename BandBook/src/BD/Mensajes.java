@@ -16,6 +16,7 @@ public class Mensajes {
     private String name; 
     private String asunto;
     private String texto;
+    private String envemail;
 
     public int getIdmensajes() {
         return idmensajes;
@@ -55,6 +56,14 @@ public class Mensajes {
 
     public void setTexto(String texto) {
         this.texto = texto;
+    }
+
+    public String getEnvemail() {
+        return envemail;
+    }
+
+    public void setEnvemail(String envemail) {
+        this.envemail = envemail;
     }
    
     

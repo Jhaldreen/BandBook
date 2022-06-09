@@ -19,7 +19,7 @@ public class Usuarios {
     private String city;
     private String province;
     private int num;
-
+    private String picture;
     
 
     public int getId() {
@@ -85,5 +85,14 @@ public class Usuarios {
     public void setNum(int num) {
         this.num = num;
     }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+    
     
 }
