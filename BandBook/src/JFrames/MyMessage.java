@@ -104,6 +104,7 @@ public class MyMessage extends javax.swing.JFrame {
         btnMuro.setBackground(new java.awt.Color(153, 170, 181));
         btnMuro.setForeground(new java.awt.Color(0, 0, 0));
         btnMuro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/post.png"))); // NOI18N
+        btnMuro.setToolTipText("Buscar en el muro");
         btnMuro.setPreferredSize(new java.awt.Dimension(134, 134));
         btnMuro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +122,7 @@ public class MyMessage extends javax.swing.JFrame {
         btnProfile.setBackground(new java.awt.Color(153, 170, 181));
         btnProfile.setForeground(new java.awt.Color(0, 0, 0));
         btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/usuario.png"))); // NOI18N
+        btnProfile.setToolTipText("Volver al perfil");
         btnProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProfileActionPerformed(evt);

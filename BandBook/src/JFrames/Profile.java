@@ -127,6 +127,7 @@ public class Profile extends javax.swing.JFrame {
         btnSms1 = new javax.swing.JButton();
         btnemailpass = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         ModificarPerfilPanel = new javax.swing.JPanel();
         lblregName = new javax.swing.JLabel();
@@ -154,6 +155,7 @@ public class Profile extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(44, 47, 51));
         jPanel2.setForeground(new java.awt.Color(44, 47, 51));
         jPanel2.setPreferredSize(new java.awt.Dimension(400, 700));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -194,6 +196,8 @@ public class Profile extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 79, -1, -1));
+
         txtnameProfile.setEditable(false);
         txtnameProfile.setBackground(new java.awt.Color(44, 47, 51));
         txtnameProfile.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
@@ -207,11 +211,13 @@ public class Profile extends javax.swing.JFrame {
                 txtnameProfileActionPerformed(evt);
             }
         });
+        jPanel2.add(txtnameProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 340, 61));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Mis Mensajes");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 247, 136, 22));
 
         btnModPerfil.setBackground(new java.awt.Color(153, 170, 181));
         btnModPerfil.setForeground(new java.awt.Color(0, 0, 0));
@@ -221,11 +227,13 @@ public class Profile extends javax.swing.JFrame {
                 btnModPerfilActionPerformed(evt);
             }
         });
+        jPanel2.add(btnModPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 275, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Modificar Perfil");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 247, 136, 22));
 
         btnMuro.setBackground(new java.awt.Color(153, 170, 181));
         btnMuro.setForeground(new java.awt.Color(0, 0, 0));
@@ -236,11 +244,13 @@ public class Profile extends javax.swing.JFrame {
                 btnMuroActionPerformed(evt);
             }
         });
+        jPanel2.add(btnMuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Buscar en el Muro");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 134, -1));
 
         btnSms1.setBackground(new java.awt.Color(153, 170, 181));
         btnSms1.setForeground(new java.awt.Color(0, 0, 0));
@@ -250,6 +260,7 @@ public class Profile extends javax.swing.JFrame {
                 btnSms1ActionPerformed(evt);
             }
         });
+        jPanel2.add(btnSms1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 275, -1, -1));
 
         btnemailpass.setBackground(new java.awt.Color(153, 170, 181));
         btnemailpass.setForeground(new java.awt.Color(0, 0, 0));
@@ -259,62 +270,24 @@ public class Profile extends javax.swing.JFrame {
                 btnemailpassActionPerformed(evt);
             }
         });
+        jPanel2.add(btnemailpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Modificar email y pass");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 170, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtnameProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnSms1)
-                        .addGap(42, 42, 42)
-                        .addComponent(btnModPerfil))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnMuro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(btnemailpass))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(txtnameProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSms1)
-                    .addComponent(btnModPerfil))
-                .addGap(51, 51, 51)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMuro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnemailpass)))
-        );
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Cerrar Sesión");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 647, -1, 35));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 700));
 
@@ -555,7 +528,7 @@ public class Profile extends javax.swing.JFrame {
 //        } catch (SQLException ex) {
 //            System.out.println("Error al modificar Registro " + ex);
 //        }
-        if (bd.modificarPerfil(usu)) {
+        if (bd.modificarPerfil(usu)|| bd.modificarPerfilmensajes(men)) {
             //pasamos de int a String
             int num = Integer.parseInt(txtNum.getText());
             //recibimos los nombres de los campos de texto para actualizar
@@ -564,7 +537,7 @@ public class Profile extends javax.swing.JFrame {
             usu.setCity(txtCity.getText());//ciudad
             usu.setProvince(txtProvince.getText());//provincia
             usu.setNum(num);//numero
-
+            men.setName(txtName.getText());
             JOptionPane.showMessageDialog(null, "Usuario modificado perfectamente");
             bd.modificarPerfil(usu);
             bd.modificarPerfilmensajes(men);//modificar el nombre de la tabla mensajes
@@ -649,6 +622,10 @@ public class Profile extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnemailpassActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -696,6 +673,7 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JButton btnSms1;
     private javax.swing.JButton btnemailpass;
     private javax.swing.JButton btnpic;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -89,6 +89,7 @@ public class Register extends javax.swing.JFrame {
         txtEmailReg.setBackground(new java.awt.Color(255, 255, 255));
         txtEmailReg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtEmailReg.setForeground(new java.awt.Color(0, 0, 0));
+        txtEmailReg.setToolTipText("Escribe email");
         txtEmailReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailRegActionPerformed(evt);
@@ -106,6 +107,7 @@ public class Register extends javax.swing.JFrame {
         txtNameReg.setBackground(new java.awt.Color(255, 255, 255));
         txtNameReg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtNameReg.setForeground(new java.awt.Color(0, 0, 0));
+        txtNameReg.setToolTipText("Escribe nombre de tu banda o local");
         txtNameReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameRegActionPerformed(evt);
@@ -115,6 +117,7 @@ public class Register extends javax.swing.JFrame {
         txtPhoneReg.setBackground(new java.awt.Color(255, 255, 255));
         txtPhoneReg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtPhoneReg.setForeground(new java.awt.Color(0, 0, 0));
+        txtPhoneReg.setToolTipText("Escribe tu teléfono");
         txtPhoneReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPhoneRegActionPerformed(evt);
@@ -132,6 +135,7 @@ public class Register extends javax.swing.JFrame {
         txtStateReg.setBackground(new java.awt.Color(255, 255, 255));
         txtStateReg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtStateReg.setForeground(new java.awt.Color(0, 0, 0));
+        txtStateReg.setToolTipText("Escribe tu ciudad");
         txtStateReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtStateRegActionPerformed(evt);
@@ -141,6 +145,7 @@ public class Register extends javax.swing.JFrame {
         txtProvinceReg.setBackground(new java.awt.Color(255, 255, 255));
         txtProvinceReg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtProvinceReg.setForeground(new java.awt.Color(0, 0, 0));
+        txtProvinceReg.setToolTipText("Escribe tu provincia");
         txtProvinceReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtProvinceRegActionPerformed(evt);
@@ -154,10 +159,12 @@ public class Register extends javax.swing.JFrame {
         regNum.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         regNum.setForeground(new java.awt.Color(0, 0, 0));
         regNum.setText("Número");
+        regNum.setToolTipText("");
 
         txtNumReg.setBackground(new java.awt.Color(255, 255, 255));
         txtNumReg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtNumReg.setForeground(new java.awt.Color(0, 0, 0));
+        txtNumReg.setToolTipText("Numero de integrantes o aforo");
         txtNumReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumRegActionPerformed(evt);
@@ -171,7 +178,7 @@ public class Register extends javax.swing.JFrame {
         btnRegister.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnRegister.setForeground(new java.awt.Color(255, 255, 255));
         btnRegister.setText("REGISTRARSE");
-        btnRegister.setToolTipText("");
+        btnRegister.setToolTipText("Registrate");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
@@ -182,7 +189,7 @@ public class Register extends javax.swing.JFrame {
         btnBack.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("ATRÁS");
-        btnBack.setToolTipText("");
+        btnBack.setToolTipText("Volver al Login");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -192,6 +199,10 @@ public class Register extends javax.swing.JFrame {
         regPass1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         regPass1.setForeground(new java.awt.Color(0, 0, 0));
         regPass1.setText("Confirmar");
+
+        txtPassConfirmReg.setToolTipText("Escribe otra vez la contraseña");
+
+        txtPassReg.setToolTipText("Escribe contraseña");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

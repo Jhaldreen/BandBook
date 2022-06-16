@@ -110,6 +110,7 @@ public class BaseDatos {
         }
 
     }
+ 
 
    
     public boolean mensajes(Mensajes men) {
@@ -176,7 +177,7 @@ public class BaseDatos {
         return true;
 
     }
-     public void modificarPerfilmensajes(Mensajes men) {
+     public boolean modificarPerfilmensajes(Mensajes men) {
         try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             // creamos una variuable para meter el INSERT y se la pasamos al prepared statement 
@@ -195,6 +196,7 @@ public class BaseDatos {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al modificar mensajes nombre " + ex);
         }
+        return true;
        
     }
      

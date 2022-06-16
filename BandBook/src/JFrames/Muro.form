@@ -86,7 +86,7 @@
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="772" max="32767" attributes="0"/>
-                      <Component id="btnBuscar1" min="-2" pref="166" max="-2" attributes="0"/>
+                      <Component id="btnBuscar" min="-2" pref="166" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -138,7 +138,7 @@
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
-                      <Component id="btnBuscar1" min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="btnBuscar" min="-2" pref="41" max="-2" attributes="0"/>
                       <EmptySpace pref="557" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -236,6 +236,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SansSerif" size="14" style="1"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Escribe un nombre"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnSms">
@@ -249,6 +250,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/pictures/iconos45x45/mismensajes.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Ir a mis mensajes"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSmsActionPerformed"/>
@@ -277,6 +279,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/pictures/iconos45x45/usuario.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="ir a mi perfil"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModPerfilActionPerformed"/>
@@ -358,6 +361,7 @@
                 <StringItem index="19" value=" "/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Selecciona provincia"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
@@ -378,12 +382,13 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Mostrar todo"/>
+            <Property name="toolTipText" type="java.lang.String" value="Se muestra todos los usuarios"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btntodoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnBuscar1">
+        <Component class="javax.swing.JButton" name="btnBuscar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -395,9 +400,10 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Busca por filtrado"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscar1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

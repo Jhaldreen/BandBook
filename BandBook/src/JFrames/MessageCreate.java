@@ -68,6 +68,7 @@ public class MessageCreate extends javax.swing.JFrame {
 
         txtescribonombre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtescribonombre.setForeground(new java.awt.Color(0, 0, 0));
+        txtescribonombre.setToolTipText("Escribe tu nombre");
         txtescribonombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtescribonombreActionPerformed(evt);
@@ -85,6 +86,7 @@ public class MessageCreate extends javax.swing.JFrame {
         btnEnviar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnEnviar.setForeground(new java.awt.Color(255, 255, 255));
         btnEnviar.setText("Enviar");
+        btnEnviar.setToolTipText("Enviar");
         btnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnviarActionPerformed(evt);
@@ -96,6 +98,7 @@ public class MessageCreate extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Cancelar");
+        jButton4.setToolTipText("Cancelar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -106,7 +109,7 @@ public class MessageCreate extends javax.swing.JFrame {
         txtTexto.setColumns(20);
         txtTexto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtTexto.setRows(5);
-        txtTexto.setToolTipText("");
+        txtTexto.setToolTipText("Escribe el mensaje que quieras");
         panelBentrada.add(txtTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 156, 518, 260));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -154,6 +157,7 @@ public class MessageCreate extends javax.swing.JFrame {
 
         txtasunto1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtasunto1.setForeground(new java.awt.Color(0, 0, 0));
+        txtasunto1.setToolTipText("Escribe el asunto");
         txtasunto1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtasunto1ActionPerformed(evt);

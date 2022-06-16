@@ -106,6 +106,7 @@ public class Login extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("ENTRAR");
+        btnLogin.setToolTipText("acceder");
         btnLogin.setBorder(null);
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +119,7 @@ public class Login extends javax.swing.JFrame {
         btnReg.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnReg.setForeground(new java.awt.Color(255, 255, 255));
         btnReg.setText("REGISTRARSE");
+        btnReg.setToolTipText("Registrase");
         btnReg.setBorder(null);
         btnReg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReg.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +140,7 @@ public class Login extends javax.swing.JFrame {
         btnExit.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setText("SALIR");
+        btnExit.setToolTipText("Salir de la aplicación");
         btnExit.setBorder(null);
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +151,7 @@ public class Login extends javax.swing.JFrame {
 
         txtpassLogin.setBackground(new java.awt.Color(255, 255, 255));
         txtpassLogin.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtpassLogin.setToolTipText("Escriba su contraseña");
 
         javax.swing.GroupLayout jpanelLayout = new javax.swing.GroupLayout(jpanel);
         jpanel.setLayout(jpanelLayout);

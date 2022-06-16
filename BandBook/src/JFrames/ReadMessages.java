@@ -112,6 +112,7 @@ public class ReadMessages extends javax.swing.JFrame {
         txtLeer.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtLeer.setForeground(new java.awt.Color(0, 0, 0));
         txtLeer.setRows(5);
+        txtLeer.setToolTipText("Escribe el texto");
         jScrollPane1.setViewportView(txtLeer);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 165, 614, 210));
@@ -147,6 +148,7 @@ public class ReadMessages extends javax.swing.JFrame {
         btnResponder.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnResponder.setForeground(new java.awt.Color(255, 255, 255));
         btnResponder.setText("Responder");
+        btnResponder.setToolTipText("Enviar a usuario");
         btnResponder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResponderActionPerformed(evt);
@@ -158,6 +160,7 @@ public class ReadMessages extends javax.swing.JFrame {
         btnCancelar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");
+        btnCancelar.setToolTipText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -168,6 +171,7 @@ public class ReadMessages extends javax.swing.JFrame {
         txtName.setBackground(new java.awt.Color(255, 255, 255));
         txtName.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtName.setForeground(new java.awt.Color(0, 0, 0));
+        txtName.setToolTipText("Escribe tu nombre");
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
@@ -179,6 +183,7 @@ public class ReadMessages extends javax.swing.JFrame {
         btnVaciar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnVaciar.setForeground(new java.awt.Color(255, 255, 255));
         btnVaciar.setText("Vaciar campos");
+        btnVaciar.setToolTipText("Vacia todos los campos");
         btnVaciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVaciarActionPerformed(evt);
@@ -195,6 +200,7 @@ public class ReadMessages extends javax.swing.JFrame {
         txtAsunto1.setBackground(new java.awt.Color(255, 255, 255));
         txtAsunto1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtAsunto1.setForeground(new java.awt.Color(0, 0, 0));
+        txtAsunto1.setToolTipText("Escribe el asunto");
         txtAsunto1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAsunto1ActionPerformed(evt);

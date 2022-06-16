@@ -51,7 +51,7 @@ public class Choose extends javax.swing.JFrame {
         chBAnda.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         chBAnda.setForeground(new java.awt.Color(255, 255, 255));
         chBAnda.setText("BANDA");
-        chBAnda.setToolTipText("");
+        chBAnda.setToolTipText("Selecciona Banda");
         chBAnda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chBAndaActionPerformed(evt);
@@ -90,7 +90,7 @@ public class Choose extends javax.swing.JFrame {
         chLOcal.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         chLOcal.setForeground(new java.awt.Color(255, 255, 255));
         chLOcal.setText("LOCAL");
-        chLOcal.setToolTipText("");
+        chLOcal.setToolTipText("Selecciona Local");
         chLOcal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chLOcalActionPerformed(evt);

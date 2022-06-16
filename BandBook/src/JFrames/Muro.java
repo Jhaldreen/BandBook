@@ -40,14 +40,14 @@ public class Muro extends javax.swing.JFrame {
             /*Defino la tabla*/
             DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
             /* Escondo el valor email de la columna 1 para que no se vea*/
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(0);           
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(0);
             /*se empieza de 0*/
             tm.setRowCount(0);
             while (resul.next()) {//recorre las tablas y me dice las que hay
                 //recogemos los datos dentro de la tabla
                 /*creamos un array para que vayan saliendo los resultados de las consultas*/
                 Object o[] = {resul.getString(2), resul.getString(4),
-                              resul.getString(6), resul.getString(7)};
+                    resul.getString(6), resul.getString(7)};
 
                 tm.addRow(o);
 
@@ -84,7 +84,7 @@ public class Muro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         btntodo = new javax.swing.JButton();
-        btnBuscar1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,10 +134,12 @@ public class Muro extends javax.swing.JFrame {
 
         txtNombre.setBackground(new java.awt.Color(255, 255, 255));
         txtNombre.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        txtNombre.setToolTipText("Escribe un nombre");
 
         btnSms.setBackground(new java.awt.Color(153, 170, 181));
         btnSms.setForeground(new java.awt.Color(0, 0, 0));
         btnSms.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/mismensajes.png"))); // NOI18N
+        btnSms.setToolTipText("Ir a mis mensajes");
         btnSms.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSmsActionPerformed(evt);
@@ -152,6 +154,7 @@ public class Muro extends javax.swing.JFrame {
         btnModPerfil.setBackground(new java.awt.Color(153, 170, 181));
         btnModPerfil.setForeground(new java.awt.Color(0, 0, 0));
         btnModPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/iconos45x45/usuario.png"))); // NOI18N
+        btnModPerfil.setToolTipText("ir a mi perfil");
         btnModPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModPerfilActionPerformed(evt);
@@ -177,6 +180,7 @@ public class Muro extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una provincia", "Andalucia", "Aragon", "Asturias", "Baleares", "Canaria", "Cantabria", "Castilla y Leon", "Castilla la mancha", "Cataluña", "Extremadura", "Galicia", "La Rioja", "Madrid", "Murcia", "Navarra", "Pais Vasco", "Valencia", " ", " " }));
+        jComboBox1.setToolTipText("Selecciona provincia");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -187,19 +191,21 @@ public class Muro extends javax.swing.JFrame {
         btntodo.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btntodo.setForeground(new java.awt.Color(255, 255, 255));
         btntodo.setText("Mostrar todo");
+        btntodo.setToolTipText("Se muestra todos los usuarios");
         btntodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btntodoActionPerformed(evt);
             }
         });
 
-        btnBuscar1.setBackground(new java.awt.Color(0, 0, 0));
-        btnBuscar1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnBuscar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar1.setText("Buscar");
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBackground(new java.awt.Color(0, 0, 0));
+        btnBuscar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setText("Buscar");
+        btnBuscar.setToolTipText("Busca por filtrado");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -241,7 +247,7 @@ public class Muro extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(772, Short.MAX_VALUE)
-                    .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(62, 62, 62)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -281,7 +287,7 @@ public class Muro extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(153, 153, 153)
-                    .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(557, Short.MAX_VALUE)))
         );
 
@@ -353,8 +359,9 @@ public class Muro extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btntodoActionPerformed
 
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
- try {
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
+        try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
             Statement st = (Statement) con.createStatement();
             /*recibimos el objeto para que la consulta nos saque los campos que necesitemos */
@@ -379,7 +386,7 @@ public class Muro extends javax.swing.JFrame {
 
         } catch (SQLException ex) {
             Logger.getLogger(Muro.class.getName()).log(Level.SEVERE, null, ex);
-        }    }//GEN-LAST:event_btnBuscar1ActionPerformed
+        }    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -418,7 +425,7 @@ public class Muro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnModPerfil;
     private javax.swing.JButton btnSms;
     private javax.swing.JButton btntodo;
