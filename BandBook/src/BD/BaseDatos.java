@@ -47,7 +47,7 @@ public class BaseDatos {
             con.close();//cerrar conexion
 
         } catch (SQLException ex) {
-            System.out.println("Error al insertar Registro " + ex);
+            JOptionPane.showMessageDialog(null, "Error al insertar Registro " + ex);
         }
         return true;
 
@@ -70,6 +70,7 @@ public class BaseDatos {
 
         } catch (SQLException ex) {
             Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         return 1;
 
@@ -170,7 +171,7 @@ public class BaseDatos {
             con.close();//cerrar conexion
 
         } catch (SQLException ex) {
-            System.out.println("Error al modificar Registro " + ex);
+            JOptionPane.showMessageDialog(null, "Error al modificar Registro " + ex);
         }
         return true;
 
@@ -192,7 +193,7 @@ public class BaseDatos {
             con.close();//cerrar conexion
 
         } catch (SQLException ex) {
-            System.out.println("Error al modificar mensajes nombre " + ex);
+            JOptionPane.showMessageDialog(null, "Error al modificar mensajes nombre " + ex);
         }
        
     }

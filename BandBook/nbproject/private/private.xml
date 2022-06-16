@@ -3,16 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/BD/BaseDatos.java</file>
             <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/JFrames/Profile.java</file>
             <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/JFrames/Muro.java</file>
             <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/JFrames/MyMessage.java</file>
-            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/JFrames/EditEmailPass.java</file>
-            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/Cifrados/Hash.java</file>
+            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/JFrames/Register.java</file>
             <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/BD/Usuarios.java</file>
-            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/JFrames/Login.java</file>
             <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/JFrames/ReadMessages.java</file>
+            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/JFrames/Welcome.java</file>
+            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/BD/Mensajes.java</file>
+            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/BD/BaseDatos.java</file>
+            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/Cifrados/Hash.java</file>
+            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/JFrames/Login.java</file>
             <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/JFrames/MessageCreate.java</file>
+            <file>file:/C:/jimenez_Sevilla_Antonio_PDA_DAM/BandBook/BandBook/BandBook/src/Cifrados/MyLogger.java</file>
         </group>
     </open-files>
 </project-private>

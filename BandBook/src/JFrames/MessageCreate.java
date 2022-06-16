@@ -25,13 +25,12 @@ public class MessageCreate extends javax.swing.JFrame {
     
     public MessageCreate() {
         initComponents();
-        
+        this.setTitle("Escribir mensaje");
         lblemail.setVisible(false);
         lblemail.setText(recibo);//email from
         lblnombre.setText(reciboName);//nombre
         lblnombreEnvia.setText(mandar);//email to
-        
-
+        lblnombreEnvia.setVisible(false);
         
     }
 
@@ -58,12 +57,14 @@ public class MessageCreate extends javax.swing.JFrame {
         lblnombreEnvia = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtasunto1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelBentrada.setBackground(new java.awt.Color(44, 47, 51));
         panelBentrada.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         panelBentrada.setPreferredSize(new java.awt.Dimension(600, 600));
+        panelBentrada.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtescribonombre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtescribonombre.setForeground(new java.awt.Color(0, 0, 0));
@@ -72,11 +73,13 @@ public class MessageCreate extends javax.swing.JFrame {
                 txtescribonombreActionPerformed(evt);
             }
         });
+        panelBentrada.add(txtescribonombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 80, 284, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Asunto");
+        panelBentrada.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 128, 48, -1));
 
         btnEnviar.setBackground(new java.awt.Color(0, 0, 0));
         btnEnviar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -87,6 +90,7 @@ public class MessageCreate extends javax.swing.JFrame {
                 btnEnviarActionPerformed(evt);
             }
         });
+        panelBentrada.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 434, 116, 32));
 
         jButton4.setBackground(new java.awt.Color(0, 0, 0));
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -97,11 +101,13 @@ public class MessageCreate extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        panelBentrada.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 434, 116, 32));
 
         txtTexto.setColumns(20);
         txtTexto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtTexto.setRows(5);
         txtTexto.setToolTipText("");
+        panelBentrada.add(txtTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 156, 518, 260));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -123,21 +129,28 @@ public class MessageCreate extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        panelBentrada.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(728, 0, -1, -1));
+        panelBentrada.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 6, 265, -1));
+
         lblemail.setBackground(new java.awt.Color(44, 47, 51));
         lblemail.setForeground(new java.awt.Color(255, 255, 255));
         lblemail.setOpaque(true);
+        panelBentrada.add(lblemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 6, 131, 26));
 
-        lblnombre.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lblnombre.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lblnombre.setForeground(new java.awt.Color(255, 255, 255));
+        panelBentrada.add(lblnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 283, 30));
 
         lblnombreEnvia.setBackground(new java.awt.Color(44, 47, 51));
         lblnombreEnvia.setForeground(new java.awt.Color(255, 255, 255));
         lblnombreEnvia.setOpaque(true);
+        panelBentrada.add(lblnombreEnvia, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 6, 131, 26));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("de");
+        panelBentrada.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 85, 48, -1));
 
         txtasunto1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtasunto1.setForeground(new java.awt.Color(0, 0, 0));
@@ -146,77 +159,12 @@ public class MessageCreate extends javax.swing.JFrame {
                 txtasunto1ActionPerformed(evt);
             }
         });
+        panelBentrada.add(txtasunto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 123, 284, -1));
 
-        javax.swing.GroupLayout panelBentradaLayout = new javax.swing.GroupLayout(panelBentrada);
-        panelBentrada.setLayout(panelBentradaLayout);
-        panelBentradaLayout.setHorizontalGroup(
-            panelBentradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBentradaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelBentradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBentradaLayout.createSequentialGroup()
-                        .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(166, 166, 166))
-                    .addGroup(panelBentradaLayout.createSequentialGroup()
-                        .addGroup(panelBentradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelBentradaLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblemail, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblnombreEnvia, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(138, 138, 138))
-                            .addGroup(panelBentradaLayout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtescribonombre, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelBentradaLayout.createSequentialGroup()
-                        .addGroup(panelBentradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelBentradaLayout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtasunto1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
-        );
-        panelBentradaLayout.setVerticalGroup(
-            panelBentradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBentradaLayout.createSequentialGroup()
-                .addGroup(panelBentradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelBentradaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panelBentradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblemail, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblnombreEnvia, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addGroup(panelBentradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblnombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBentradaLayout.createSequentialGroup()
-                                .addGroup(panelBentradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txtescribonombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(13, 13, 13))))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(panelBentradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtasunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
-                .addComponent(txtTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelBentradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
-        );
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("para");
+        panelBentrada.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 83, 38, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -314,6 +262,7 @@ public class MessageCreate extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;

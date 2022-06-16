@@ -41,8 +41,8 @@ public class Profile extends javax.swing.JFrame {
 
     public Profile() {
         initComponents();
+        this.setTitle("Perfil");
         ModificarPerfilPanel.setVisible(false);//panel modificar por defecto no le vemos
-        
 
         /**
          * **************** Traer datos al
@@ -70,7 +70,7 @@ public class Profile extends javax.swing.JFrame {
         }
 
         /**
-         * **************** boton  perfil********************************
+         * **************** boton perfil********************************
          */
         try {
 
@@ -556,15 +556,14 @@ public class Profile extends javax.swing.JFrame {
 //            System.out.println("Error al modificar Registro " + ex);
 //        }
         if (bd.modificarPerfil(usu)) {
-
+            //pasamos de int a String
             int num = Integer.parseInt(txtNum.getText());
-
-            //usu.setEmail(txtEmail.getText());
-            usu.setName(txtName.getText());
-            usu.setPhone(txtPhone.getText());
-            usu.setCity(txtCity.getText());
-            usu.setProvince(txtProvince.getText());
-            usu.setNum(num);
+            //recibimos los nombres de los campos de texto para actualizar
+            usu.setName(txtName.getText());//nombre
+            usu.setPhone(txtPhone.getText());//telefono
+            usu.setCity(txtCity.getText());//ciudad
+            usu.setProvince(txtProvince.getText());//provincia
+            usu.setNum(num);//numero
 
             JOptionPane.showMessageDialog(null, "Usuario modificado perfectamente");
             bd.modificarPerfil(usu);
@@ -608,9 +607,9 @@ public class Profile extends javax.swing.JFrame {
         JFileChooser archivo = new JFileChooser();
         archivo.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         FileFilter filtro1 = new FileNameExtensionFilter("JPG file", "jpg");
-        FileFilter filtro2 = new FileNameExtensionFilter("PNG file","png");
-         int seleccion = archivo.showOpenDialog(this);
-          archivo.setFileFilter(filtro1);
+        FileFilter filtro2 = new FileNameExtensionFilter("PNG file", "png");
+        int seleccion = archivo.showOpenDialog(this);
+        archivo.setFileFilter(filtro1);
 
         archivo.addChoosableFileFilter(filtro2);
 
@@ -619,25 +618,22 @@ public class Profile extends javax.swing.JFrame {
         File ruta = new File("C:/");
 
         archivo.setCurrentDirectory(ruta);
-        
-         int ventana = archivo.showOpenDialog(null);
-         
-         if(seleccion== JFileChooser.APPROVE_OPTION){
-         
-         File fichero = archivo.getSelectedFile();
-         
-         File file = archivo.getSelectedFile();
 
-                btnpic.setText(String.valueOf(file));
+        int ventana = archivo.showOpenDialog(null);
 
-                Image foto = getToolkit().getImage(lblpicProfile.getText());
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
 
-                foto = foto.getScaledInstance(210, 210, Image.SCALE_DEFAULT);
+            File fichero = archivo.getSelectedFile();
 
-               
-         
-         
-         }
+            File file = archivo.getSelectedFile();
+
+            btnpic.setText(String.valueOf(file));
+
+            Image foto = getToolkit().getImage(lblpicProfile.getText());
+
+            foto = foto.getScaledInstance(210, 210, Image.SCALE_DEFAULT);
+
+        }
     }//GEN-LAST:event_btnpicActionPerformed
 
     private void txtnameProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameProfileActionPerformed

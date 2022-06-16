@@ -30,7 +30,8 @@ public class ReadMessages extends javax.swing.JFrame {
     
     public ReadMessages() {
         initComponents();
-        lblEmail.setVisible(false);
+        this.setTitle("Leer mensajes");
+        lblEmail.setVisible(false);//para recoger los emails
         lblenEmail.setVisible(false);
          try {
 
@@ -251,6 +252,7 @@ public class ReadMessages extends javax.swing.JFrame {
             men.setName(txtName.getText());
             men.setAsunto(txtAsunto1.getText());
             men.setTexto(txtLeer.getText());
+            /*cambio los datos para que los mensajes lleguen al destino y viceversa*/
             men.setEmail(lblenEmail.getText());
             men.setEnvemail(lblEmail.getText());
 

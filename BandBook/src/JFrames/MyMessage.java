@@ -31,6 +31,7 @@ public class MyMessage extends javax.swing.JFrame {
 
     public MyMessage() {
         initComponents();
+        this.setTitle("Mensajes");
         try {
 
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion

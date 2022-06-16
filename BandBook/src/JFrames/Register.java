@@ -3,7 +3,7 @@ package JFrames;
 import BD.BaseDatos;
 import BD.Usuarios;
 import Cifrados.Hash;
-import static JFrames.Login.mandar;
+
 
 import javax.swing.JOptionPane;
 
@@ -17,9 +17,10 @@ import javax.swing.JOptionPane;
  * @author Antonio
  */
 public class Register extends javax.swing.JFrame {
-
+   
     public Register() {
         initComponents();
+        this.setTitle("Ventana de Registro");
         
     }
 
@@ -152,7 +153,7 @@ public class Register extends javax.swing.JFrame {
 
         regNum.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         regNum.setForeground(new java.awt.Color(0, 0, 0));
-        regNum.setText("Aforo");
+        regNum.setText("Número");
 
         txtNumReg.setBackground(new java.awt.Color(255, 255, 255));
         txtNumReg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
