@@ -1,4 +1,6 @@
 # BandBook
+Enlace para descargar el pdf del proyecto final [Jimenez_Sevilla_Antonio_ProyectoFinal.pdf](https://github.com/Jhaldreen/BandBook/files/9220734/Jimenez_Sevilla_Antonio_ProyectoFinal.pdf)
+
 Este proyecto, ha sido realizado para crear una aplicación de escritorio, la cual permite ponerse en contacto bandas de música nóveles, independientes, etc. con los diferentes bares, pubs o promotores de eventos. De esta manera lo que se pretende es resolver el problema que existe a la hora de organizar eventos por todo el territorio español, omitiendo la necesidad de contratar una empresa de Booking, ya que no todo el mundo tiene presupuesto para poder contratarlo. Esta aplicación es innovadora, ya que en su comienzo los grupos normalmente carecen de presupuesto y contactos para poder salir de su provincia a mostrar sus trabajos en directo. Con esta aplicación, puedes ponerte en contacto con el local o pub que quieras, llegando a un acuerdo con el dueño para concertar una fecha de realización del evento de forma cómoda y óptima.
 
 
@@ -35,5 +37,5 @@ ENGINE = InnoDB
 
 He ido modificando algo la base de datos, según he ido avanzando despues de la entrega final, habría que crear una foreign key para mensajes_name, para ahorra código en java y sea más eficaz.
 
-[Jimenez_Sevilla_Antonio_ProyectoFinal.pdf](https://github.com/Jhaldreen/BandBook/files/9220734/Jimenez_Sevilla_Antonio_ProyectoFinal.pdf)
+
 
