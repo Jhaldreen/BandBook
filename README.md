@@ -1,6 +1,13 @@
 # BandBook
 Este proyecto, ha sido realizado para crear una aplicación de escritorio, la cual permite ponerse en contacto bandas de música nóveles, independientes, etc. con los diferentes bares, pubs o promotores de eventos. De esta manera lo que se pretende es resolver el problema que existe a la hora de organizar eventos por todo el territorio español, omitiendo la necesidad de contratar una empresa de Booking, ya que no todo el mundo tiene presupuesto para poder contratarlo. Esta aplicación es innovadora, ya que en su comienzo los grupos normalmente carecen de presupuesto y contactos para poder salir de su provincia a mostrar sus trabajos en directo. Con esta aplicación, puedes ponerte en contacto con el local o pub que quieras, llegando a un acuerdo con el dueño para concertar una fecha de realización del evento de forma cómoda y óptima.
 
+
+![2](https://user-images.githubusercontent.com/85558554/181779353-288b8feb-5c5b-4d94-ac3e-1e2761132941.jpg)
+
+![3](https://user-images.githubusercontent.com/85558554/181779426-59bb9bf0-86be-4c06-9c0e-9ee3595aad6e.jpg)
+
+![4](https://user-images.githubusercontent.com/85558554/181779491-4d574dc8-297e-452e-85c3-191b4b5bf17a.jpg)
+
 # Base de datos MySQL
 Las tablas que hay que crear para que funcione la app en Netbeans son las siguientes.
 
