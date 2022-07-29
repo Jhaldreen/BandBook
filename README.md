@@ -3,7 +3,7 @@ Este proyecto, ha sido realizado para crear una aplicación de escritorio, la cu
 
 # Base de datos MySQL
 Las tablas que hay que crear para que funcione la app en Netbeans son las siguientes.
-
+`
 CREATE TABLE IF NOT EXISTS `BandBook`.`usuarios` (
 `idusuarios` INT NOT NULL AUTO_INCREMENT,
 `email` VARCHAR(25) NOT NULL,
@@ -23,5 +23,5 @@ CREATE TABLE IF NOT EXISTS `BandBook`.`mensajes` (
 `mensajes_texto` VARCHAR(200) NOT NULL,
 PRIMARY KEY (`idmensajes`))
 ENGINE = InnoDB
-
+`
 He ido modificando algo la base de datos según he ido avanzando despues de la entrega final, habría que crear una foreign key para mensajes_name, para ahorra código en java y sea más eficaz.
