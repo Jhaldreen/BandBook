@@ -4,9 +4,10 @@ Este proyecto, ha sido realizado para crear una aplicación de escritorio, la cu
 
 ![2](https://user-images.githubusercontent.com/85558554/181779353-288b8feb-5c5b-4d94-ac3e-1e2761132941.jpg)
 
-![3](https://user-images.githubusercontent.com/85558554/181779426-59bb9bf0-86be-4c06-9c0e-9ee3595aad6e.jpg)
+# Diagrama de clases
 
-![4](https://user-images.githubusercontent.com/85558554/181779491-4d574dc8-297e-452e-85c3-191b4b5bf17a.jpg)
+![6](https://user-images.githubusercontent.com/85558554/181780462-002142f0-a671-4009-901e-bbbc7bb574ed.jpg)
+
 
 # Base de datos MySQL
 Las tablas que hay que crear para que funcione la app en Netbeans son las siguientes.
@@ -33,3 +34,6 @@ ENGINE = InnoDB
 
 
 He ido modificando algo la base de datos, según he ido avanzando despues de la entrega final, habría que crear una foreign key para mensajes_name, para ahorra código en java y sea más eficaz.
+
+[Jimenez_Sevilla_Antonio_ProyectoFinal.pdf](https://github.com/Jhaldreen/BandBook/files/9220734/Jimenez_Sevilla_Antonio_ProyectoFinal.pdf)
+
