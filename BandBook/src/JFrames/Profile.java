@@ -619,11 +619,12 @@ public class Profile extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSms1ActionPerformed
 
     private void btnemailpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemailpassActionPerformed
-        // TODO add your handling code here:
+        new EmailPassMod().setVisible(true);
     }//GEN-LAST:event_btnemailpassActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.exit(0);
+        new Login().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

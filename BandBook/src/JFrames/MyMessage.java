@@ -32,6 +32,7 @@ public class MyMessage extends javax.swing.JFrame {
     public MyMessage() {
         initComponents();
         this.setTitle("Mensajes");
+        lblnombre.setText(mandar);
         try {
 
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
@@ -76,7 +77,7 @@ public class MyMessage extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        lblnombre = new javax.swing.JLabel();
         btnMuro = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         btnProfile = new javax.swing.JButton();
@@ -95,11 +96,10 @@ public class MyMessage extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 700));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Nombre del grupo o Local");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 21, 288, 48));
+        lblnombre.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lblnombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblnombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lblnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 21, 288, 48));
 
         btnMuro.setBackground(new java.awt.Color(153, 170, 181));
         btnMuro.setForeground(new java.awt.Color(0, 0, 0));
@@ -303,7 +303,6 @@ public class MyMessage extends javax.swing.JFrame {
     private javax.swing.JButton btnMuro;
     private javax.swing.JButton btnProfile;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -311,5 +310,6 @@ public class MyMessage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblnombre;
     // End of variables declaration//GEN-END:variables
 }

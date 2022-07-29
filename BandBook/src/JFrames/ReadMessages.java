@@ -253,7 +253,7 @@ public class ReadMessages extends javax.swing.JFrame {
         BaseDatos bd = new BaseDatos();
         Mensajes men = new Mensajes();
 
-        if (bd.mensajes(men)) {
+        if (bd.mensajesResponder(men)) {
 
             men.setName(txtName.getText());
             men.setAsunto(txtAsunto1.getText());
@@ -263,7 +263,7 @@ public class ReadMessages extends javax.swing.JFrame {
             men.setEnvemail(lblEmail.getText());
 
             JOptionPane.showMessageDialog(null, "Mensaje enviado correctamente");
-            bd.mensajes(men);
+            bd.mensajesResponder(men);
             this.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "Mensaje no enviado intentelo de nuevo");

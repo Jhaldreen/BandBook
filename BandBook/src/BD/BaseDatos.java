@@ -52,6 +52,29 @@ public class BaseDatos {
         return true;
 
     }
+    public boolean modificarEmailPass(Usuarios usr) {
+        try {
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+            // creamos una variuable para meter el INSERT y se la pasamos al prepared statement 
+            String sql = " UPDATE usuarios SET email=?, pass=? WHERE email'"+mandar+"'";
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            //asignamos cada variable siendo la primera cifra el numero de columna
+            //y despues la variable 
+
+            sentencia.setString(1, usr.getEmail());
+            sentencia.setString(2, usr.getPass());
+         
+            sentencia.executeUpdate();//ejecutamos las sentencias
+
+            sentencia.close();//cerrrar la sentencia
+            con.close();//cerrar conexion
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al insertar Registro " + ex);
+        }
+        return true;
+
+    }
 
     public int existeUsuario(String email) {
 
@@ -114,6 +137,42 @@ public class BaseDatos {
 
    
     public boolean mensajes(Mensajes men) {
+
+ try {
+            con = DriverManager.getConnection(url, "root", "");//establezco la conexion
+            // creamos una variable para meter el INSERT y se la pasamos al prepared statement 
+            String sql = " INSERT INTO mensajes "
+                    + "(name,asunto,texto,email,env_email)"
+                    + " VALUES (?,?,?,?,?)";
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            //asignamos cada variable siendo la primera cifra el numero de columna
+            //y despues la variable 
+            
+            sentencia.setString(1,men.getName());
+            sentencia.setString(2, men.getAsunto());
+            sentencia.setString(3, men.getTexto());
+            sentencia.setString(4, men.getEmail());
+            sentencia.setString(5, men.getEnvemail());
+            sentencia.executeUpdate();//ejecutamos las sentencias
+
+            sentencia.close();//cerrrar la sentencia
+            con.close();//cerrar conexion
+
+        } catch (SQLException ex) {
+            System.out.println("Error al insertar mensaje " + ex);
+        }finally{
+     try {
+         
+         con.close();
+     } catch (SQLException ex) {
+         Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+     }
+            }
+        return true;
+
+    }
+  
+    public boolean mensajesResponder(Mensajes men) {
 
  try {
             con = DriverManager.getConnection(url, "root", "");//establezco la conexion
