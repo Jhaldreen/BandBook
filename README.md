@@ -1,11 +1,27 @@
 # BandBook
 Este proyecto, ha sido realizado para crear una aplicación de escritorio, la cual permite ponerse en contacto bandas de música nóveles, independientes, etc. con los diferentes bares, pubs o promotores de eventos. De esta manera lo que se pretende es resolver el problema que existe a la hora de organizar eventos por todo el territorio español, omitiendo la necesidad de contratar una empresa de Booking, ya que no todo el mundo tiene presupuesto para poder contratarlo. Esta aplicación es innovadora, ya que en su comienzo los grupos normalmente carecen de presupuesto y contactos para poder salir de su provincia a mostrar sus trabajos en directo. Con esta aplicación, puedes ponerte en contacto con el local o pub que quieras, llegando a un acuerdo con el dueño para concertar una fecha de realización del evento de forma cómoda y óptima.
 
-# Innovación
-• Redes sociales como Facebook o Instagram cubren las necesidades de usuarios de estar en contacto con otras personas, mediante mensajes, fotos, etc. Hay muchos perfiles de usuarios, bandas, empresas y un largo etc., por lo que las redes se centran solo en promocionar productos o generar más fuentes de ingresos. Mi aplicación da un paso más allá, centrándose específicamente en un mundo en el que para muchos es desconocido, ya que muchos de los artistas locales que empiezan, no llegan a donde ellos quieren debido a la falta de medios y recursos para hacerlo. No solo aporto comunicación sencilla entre bandas y locales, sino que creo un entorno más favorable, beneficiando a ambas partes sin tener que gastar excesivamente dinero, e incluso llegando a tener un beneficio para costearse la grabación de un disco, por ejemplo.
+# Base de datos MySQL
+Las tablas que hay que crear para que funcione la app en Netbeans son las siguientes.
 
-• En Facebook o Instagram tenemos cientos de salas, pubs que publican sus conciertos y sus eventos, para que la gente saque su entrada para ver a su artista favorito. Muchas de las personas que se dedican al mundo del espectáculo, están completamente perdidas en este ámbito, sin eficacia para poder hacer llegar su trabajo a los demás; de esta manera la gente, con mi aplicación puede ponerse en contacto de manera eficiente con ese sitio al que normalmente van a ver su evento favorito, para ser ellos los que aparezcan la próxima vez en el cartel de eventos.
+CREATE TABLE IF NOT EXISTS `BandBook`.`usuarios` (
+`idusuarios` INT NOT NULL AUTO_INCREMENT,
+`email` VARCHAR(25) NOT NULL,
+`pass` VARCHAR(45) NOT NULL,
+`name` VARCHAR(45) NOT NULL,
+`phone` INT(9) NULL,
+`state` VARCHAR(45) NULL,
+`province` VARCHAR(45) NULL,
+`num_people` INT(10) NOT NULL,
+PRIMARY KEY (`idusuarios`))
+ENGINE = InnoDB
 
-• Debido a la alta demanda de eventos a partir de este año, con el cese de restricciones por COVID-19, el impacto que puede llegar a generar en el sector puede ser importante. Mi aplicación supone un cambio para facilitar en cierta medida lo que toda banda o agrupación quiere para sí mismos: que personas de tu misma comunidad u otras comunidades, estén delante para ver tu puesta en escena de tantas horas de ensayo, para muchos no tiene precio, debido a que de alguna forma una persona empieza a tocar un instrumento por que le gusta o ha visto a su artista favorito en directo, queriendo llegar de alguna manera a realizar él su propio evento. Con esta aplicación puede ser posible.ç
+CREATE TABLE IF NOT EXISTS `BandBook`.`mensajes` (
+`idmensajes` INT NOT NULL AUTO_INCREMENT,
+`mensajes_name` VARCHAR(45) NOT NULL,
+`mensajes_asunto` VARCHAR(45) NULL,
+`mensajes_texto` VARCHAR(200) NOT NULL,
+PRIMARY KEY (`idmensajes`))
+ENGINE = InnoDB
 
-• El método utilizado ha consistido en la integración de mis 15 años de experiencia previa como músico y técnico de sonido, junto a mi motivación por crear un recurso al alcance de todo el colectivo de artistas, independientemente de si son profesionales o amateurs.
+He ido modificando algo la base de datos según he ido avanzando despues de la entrega final, habría que crear una foreign key para mensajes_name, para ahorra código en java y sea más eficaz.
