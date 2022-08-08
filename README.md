@@ -14,29 +14,24 @@ Este proyecto, ha sido realizado para crear una aplicación de escritorio, la cu
 # Base de datos MySQL
 Las tablas que hay que crear para que funcione la app en Netbeans son las siguientes.
 
-"CREATE TABLE IF NOT EXISTS `BandBook`.`usuarios` (
-`idusuarios` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS BandBook.usuarios (
+idusuarios INT NOT NULL AUTO_INCREMENT,
+email VARCHAR(25) NOT NULL,
+pass VARCHAR(45) NOT NULL,
+name VARCHAR(45) NOT NULL,
+phone INT(9) NULL,
+state VARCHAR(45) NULL,
+province VARCHAR(45) NULL,
+num_people INT(10) NOT NULL,
+PRIMARY KEY (idusuarios))
+ENGINE = InnoDB
 
-`email` VARCHAR(25) NOT NULL,
-
-`pass` VARCHAR(45) NOT NULL,
-
-`name` VARCHAR(45) NOT NULL,
-
-`phone` INT(9) NULL,
-
-`state` VARCHAR(45) NULL,
-`province` VARCHAR(45) NULL,
-`num_people` INT(10) NOT NULL,
-PRIMARY KEY (`idusuarios`))
-ENGINE = InnoDB"
-
-CREATE TABLE IF NOT EXISTS `BandBook`.`mensajes` (
-`idmensajes` INT NOT NULL AUTO_INCREMENT,
-`mensajes_name` VARCHAR(45) NOT NULL,
-`mensajes_asunto` VARCHAR(45) NULL,
-`mensajes_texto` VARCHAR(200) NOT NULL,
-PRIMARY KEY (`idmensajes`))
+CREATE TABLE IF NOT EXISTS BandBook.mensajes (
+idmensajes INT NOT NULL AUTO_INCREMENT,
+mensajes_name VARCHAR(45) NOT NULL,
+mensajes_asunto VARCHAR(45) NULL,
+mensajes_texto VARCHAR(200) NOT NULL,
+PRIMARY KEY (idmensajes))
 ENGINE = InnoDB
 
 
