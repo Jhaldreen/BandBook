@@ -16,10 +16,15 @@ Las tablas que hay que crear para que funcione la app en Netbeans son las siguie
 
 "CREATE TABLE IF NOT EXISTS `BandBook`.`usuarios` (
 `idusuarios` INT NOT NULL AUTO_INCREMENT,
+
 `email` VARCHAR(25) NOT NULL,
+
 `pass` VARCHAR(45) NOT NULL,
+
 `name` VARCHAR(45) NOT NULL,
+
 `phone` INT(9) NULL,
+
 `state` VARCHAR(45) NULL,
 `province` VARCHAR(45) NULL,
 `num_people` INT(10) NOT NULL,
